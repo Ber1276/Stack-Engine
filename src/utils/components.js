@@ -1,7 +1,7 @@
 // import { defineComponent } from 'vue';
-import HeaderBar from '@/components/HeaderBar.vue'
+import MainHeader from '@/components/MainHeader.vue'
 export default {
   install(app) {
-    app.component('HeaderBar', HeaderBar)
+    app.component('MainHeader', MainHeader)
   }
 }

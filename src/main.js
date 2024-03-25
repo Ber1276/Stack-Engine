@@ -3,6 +3,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { createPinia } from 'pinia'
 import router from './router'
+//使用components.js管理
 import components from './utils/components'
 
 //声明
