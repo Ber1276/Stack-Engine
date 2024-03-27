@@ -1,15 +1,13 @@
-import './assets/main.css'
 import { createApp } from 'vue'
 import App from './App.vue'
-import { createPinia } from 'pinia'
-import router from './router'
-//使用components.js管理
-import components from './utils/components'
 
+import './assets/main.css' //样式
+import router from './router/index' //路由
+import pinia from './stores/index' //状态
 //声明
 const app = createApp(App)
-app.use(components)
-app.use(createPinia())
-app.use(router)
+
 //挂载
+app.use(router)
+app.use(pinia)
 app.mount('#app')

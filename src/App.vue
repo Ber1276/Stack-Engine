@@ -1,16 +1,17 @@
 <script setup>
 //Router
 import { RouterView } from 'vue-router'
+import router from './router';
+console.log(router)
 //Pinia
-// import { useCounter } from '@/stores/counter'
-// const counter = useCounter()
+import { useCounter } from '@/stores/index'
+const counter = useCounter()
+console.log(counter);
 </script>
 
 <template>
   <MainHeader></MainHeader>
-  <!-- <MainAsider></MainAsider> -->
   <RouterView></RouterView>
-
 </template>
 
 <style scoped></style>
