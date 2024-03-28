@@ -10,7 +10,6 @@ console.log(counter);
 </script>
 
 <template>
-  <MainHeader></MainHeader>
   <RouterView></RouterView>
 </template>
 

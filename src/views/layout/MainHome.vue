@@ -1,6 +1,6 @@
 <template>
     <div class="common-layout">
-        <el-container>
+        <el-container id="mainContainer">
             <el-aside width="200px">
                 <el-row class="tac">
                     <el-col :span="12">
@@ -80,6 +80,11 @@ console.log(list.value);
 </script>
 
 <style scoped>
+.el-container {
+    margin: 0 auto;
+    width: 86%;
+}
+
 .el-row {
     width: 200px;
 

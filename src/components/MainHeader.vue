@@ -14,7 +14,7 @@ import router from '@/router';
     <!-- {{ route.path }} -->
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#fff"
         text-color="#000" active-text-color="blue" @select="handleSelect">
-        <el-menu-item index="1" @click="router.push('/')">首页</el-menu-item>
+        <el-menu-item index="1" @click="router.push('/home')">首页</el-menu-item>
         <el-menu-item index="2" @click="router.push('/learn')">课程</el-menu-item>
         <el-menu-item index="3">圈子</el-menu-item>
         <el-menu-item index="4">竞赛</el-menu-item>

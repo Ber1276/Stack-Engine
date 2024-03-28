@@ -1,7 +1,10 @@
 <template>
     <ul v-infinite-scroll="load" class="infinite-list" style="overflow: auto">
-        <li v-for="(item, index) in modelvalue" :key="index" class="infinite-list-item"><a :href="item.url">{{
-        item.name }}</a></li>
+        <li v-for="(item, index) in modelvalue" :key="index" class="infinite-list-item">
+            <a :href="item.url">
+                {{ item.name }}
+            </a>
+        </li>
     </ul>
 </template>
 
@@ -18,7 +21,7 @@ console.log(modelvalue);
 
 <style>
 .infinite-list {
-    height: 1000px;
+    height: max-content;
     padding: 0;
     margin: 0;
     list-style: none;
@@ -28,7 +31,7 @@ console.log(modelvalue);
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50px;
+    height: max-content;
     background: var(--el-color-primary-light-9);
     margin: 10px;
     color: var(--el-color-primary);
