@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-
 import './assets/main.css' //样式
 import router from './router/index' //路由
 import pinia from './stores/index' //状态
