@@ -7,7 +7,9 @@ const handleSelect = (key, keyPath) => {
 import router from '@/router';
 const input = ref('')
 const dialogVisible = ref(false)
-
+import {
+    ArrowDown
+} from '@element-plus/icons-vue'
 const handleClose = (done) => {
     done()
     dialogVisible.value = 'false'
@@ -30,6 +32,22 @@ const handleClose = (done) => {
             <el-input v-model="input" style="width: 240px; " placeholder="搜你所想" clearable />
         </el-menu-item>
         <el-menu-item index="2" @click="dialogVisible = true; console.log(dialogVisible)">登录</el-menu-item>
+        <el-menu-item index="3">
+            <el-dropdown>
+                <span class="el-dropdown-link">
+                    User Name
+                    <el-icon class="el-icon--right">
+                        <arrow-down />
+                    </el-icon>
+                </span>
+                <template #dropdown>
+                    <el-dropdown-menu>
+                        <el-dropdown-item>个人中心</el-dropdown-item>
+                        <el-dropdown-item>退出账号</el-dropdown-item>
+                    </el-dropdown-menu>
+                </template>
+            </el-dropdown>
+        </el-menu-item>
 
     </el-menu>
     <!-- 登录弹出框 -->
@@ -37,7 +55,7 @@ const handleClose = (done) => {
         center="true">
         <MainUserLogin v-model="dialogVisible"></MainUserLogin>
         <div id="footer">
-            <p>没有账号？<a href="">注册</a></p>
+            <p>没有账号？<a href="/user" style="text-decoration: none;color: black;">注册</a></p>
         </div>
     </el-dialog>
 </template>
@@ -70,5 +88,12 @@ const handleClose = (done) => {
 
 .flex-grow {
     flex-grow: 1;
+}
+
+.example-showcase .el-dropdown-link {
+    cursor: pointer;
+    color: var(--el-color-primary);
+    display: flex;
+    align-items: center;
 }
 </style>

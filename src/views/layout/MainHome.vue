@@ -1,13 +1,36 @@
+<script setup>
+import instance from '@/utils/request';
+import {
+    ChromeFilled,
+    MagicStick,
+    Bell,
+    CoffeeCup,
+
+} from '@element-plus/icons-vue'
+import { onMounted, ref } from 'vue'
+
+const list = ref([])
+const isLoading = ref(true)
+const props = ref({ list, isLoading })
+const getlist = async () => {
+    const res = (await instance.get('https://tenapi.cn/v2/baiduhot'))
+    list.value = res.data.data
+    isLoading.value = false
+}
+onMounted(getlist)
+
+const value1 = ref(0)
+
+</script>
 <template>
     <div class="common-layout">
         <el-container>
-            <el-aside width="200px">
+            <el-aside width="200px" class="first-aside">
                 <el-row class="tac">
                     <el-col :span="12">
                         <h5 class="mb-2"></h5>
                         <br>
-                        <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen"
-                            @close="handleClose">
+                        <el-menu default-active="1" class="el-menu-vertical-demo">
                             <el-menu-item index="1">
                                 <el-icon>
                                     <Bell />
@@ -18,64 +41,45 @@
                                 <el-icon>
                                     <CoffeeCup />
                                 </el-icon>
-                                <span>趣味</span>
+                                <span>排行榜</span>
                             </el-menu-item>
                             <el-menu-item index="3">
                                 <el-icon>
-                                    <document />
+                                    <ChromeFilled />
                                 </el-icon>
-                                <span>Navigator Three</span>
+                                <span>前后端</span>
                             </el-menu-item>
                             <el-menu-item index="4">
                                 <el-icon>
-                                    <setting />
+                                    <MagicStick />
                                 </el-icon>
-                                <span>Navigator Four</span>
+                                <span>人工智能</span>
                             </el-menu-item>
                         </el-menu>
                     </el-col>
                 </el-row>
             </el-aside>
             <el-main>
-                <MainList v-model="list"></MainList>
+                <MainList v-model="props"></MainList>
             </el-main>
             <el-aside>
-
+                <div class="slider-demo-block">
+                    <span class="demonstration">Default value</span>
+                    <el-slider v-model="value1" />
+                </div>
             </el-aside>
         </el-container>
     </div>
 </template>
 
-<script setup>
-import instance from '@/utils/request';
-import {
-    Document,
-    Setting,
-    Bell,
-    CoffeeCup,
-} from '@element-plus/icons-vue'
-import { onMounted, ref } from 'vue'
-const handleOpen = (key, keyPath) => {
-    console.log(key, keyPath)
-}
-const handleClose = (key, keyPath) => {
-    console.log(key, keyPath)
-}
-const list = ref([])
-const getlist = async () => {
-    const res = (await instance.get('https://tenapi.cn/v2/baiduhot'))
-    list.value = res.data.data
-}
-onMounted(getlist)
-console.log(list.value);
-</script>
 
 <style scoped>
 .el-container {
+
     margin: 0 auto;
     width: 100%;
 
-    .el-aside {
+    .first-aside {
         margin-left: 5%;
         width: 200px;
     }
