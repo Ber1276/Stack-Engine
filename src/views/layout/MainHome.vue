@@ -19,8 +19,6 @@ const getlist = async () => {
 }
 onMounted(getlist)
 
-const value1 = ref(0)
-
 </script>
 <template>
     <div class="common-layout">
@@ -63,10 +61,15 @@ const value1 = ref(0)
                 <MainList v-model="props"></MainList>
             </el-main>
             <el-aside>
-                <div class="slider-demo-block">
-                    <span class="demonstration">Default value</span>
-                    <el-slider v-model="value1" />
-                </div>
+                <el-card class="right-card" style="max-width: 280px">
+                    <template #header>
+                        <div class="card-header">
+                            <span>Card name</span>
+                        </div>
+                    </template>
+                    <p v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</p>
+                    <template #footer>Footer content</template>
+                </el-card>
             </el-aside>
         </el-container>
     </div>
@@ -80,8 +83,13 @@ const value1 = ref(0)
     width: 100%;
 
     .first-aside {
+        margin-top: -22px;
         margin-left: 5%;
         width: 200px;
+    }
+
+    .right-card {
+        margin-top: 20px;
     }
 }
 

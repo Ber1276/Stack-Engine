@@ -7,7 +7,6 @@ const load = () => {
     count.value += 2
 }
 const modelvalue = defineModel()
-
 </script>
 
 <template>
