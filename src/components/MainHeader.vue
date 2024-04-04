@@ -7,6 +7,7 @@ const handleSelect = (key, keyPath) => {
 import router from '@/router';
 const input = ref('')
 const dialogVisible = ref(false)
+const loginVisible = ref(true)
 import {
     ArrowDown
 } from '@element-plus/icons-vue'
@@ -14,6 +15,7 @@ const handleClose = (done) => {
     done()
     dialogVisible.value = 'false'
 }
+
 </script>
 <template>
     <!-- 导航栏 -->
@@ -31,7 +33,7 @@ const handleClose = (done) => {
         <el-menu-item index="1" id="header-input">
             <el-input v-model="input" style="width: 240px; " placeholder="搜你所想" clearable />
         </el-menu-item>
-        <el-menu-item index="2" @click="dialogVisible = true; console.log(dialogVisible)">登录</el-menu-item>
+        <el-menu-item index="2" @click="dialogVisible = true" v-if="loginVisible">登录</el-menu-item>
         <el-menu-item index="3">
             <el-dropdown>
                 <span class="el-dropdown-link">
@@ -53,7 +55,7 @@ const handleClose = (done) => {
     <!-- 登录弹出框 -->
     <el-dialog v-model="dialogVisible" width="500" style="height: max-content" :before-close="handleClose"
         center="true">
-        <MainUserLogin v-model="dialogVisible"></MainUserLogin>
+        <MainUserLogin v-model:dialogVisible="dialogVisible" v-model:loginVisible="loginVisible"></MainUserLogin>
         <div id="footer">
             <p>没有账号？<a href="/user" style="text-decoration: none;color: black;">注册</a></p>
         </div>
