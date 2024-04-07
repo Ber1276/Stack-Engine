@@ -1,10 +1,10 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { defineModel } from 'vue';
-import { GetUserImg, GetUserInfo, GetUserDetails } from '@/api/user.js'
+import { GetUserInfo, GetUserDetails } from '@/api/user.js'
 const dialogVisible = defineModel('dialogVisible')
 const loginVisible = defineModel('loginVisible')
-// const imgSrc=defineModel('imgSrc')
+let imgSrc=defineModel('imgSrc')
 const ruleFormRef = ref()
 const ruleForm = ref({
     username: '',
@@ -41,13 +41,12 @@ const SetUserImg = async () => {
     const userToken = localStorage.getItem('token')
     console.log(userId, userToken)
     const userPic = await GetUserDetails(userId, userToken)
-    console.log(GetUserImg(userPic.data.userPic, userToken))
-}
+    imgSrc.value=`http://49.232.134.192:8080/img/${userPic.data.userPic}`
 </script>
 <template>
     <el-form ref="ruleFormRef" :rules="rules" style="max-width: 600px;margin-top: 20px;padding-bottom: 0;"
         :model="ruleForm" status-icon label-width="auto" class="demo-ruleForm" label-position='right'
-        hide-required-asterisk="true">
+        hide-required-asterisk>
         <el-form-item label="用户名" prop="username">
             <el-input v-model="ruleForm.username" type="text" autocomplete="off" />
         </el-form-item>

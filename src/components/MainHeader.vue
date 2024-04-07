@@ -5,7 +5,7 @@ import router from '@/router';
 const input = ref('')
 const dialogVisible = ref(false)
 const loginVisible = ref(true)
-let imgSrc = ref()
+let imgSrc = ref('')
 import {
     ArrowDown
 } from '@element-plus/icons-vue'
@@ -28,6 +28,9 @@ const handleClose = (done) => {
         <el-menu-item index="2" @click="router.push('/learn')">课程</el-menu-item>
         <el-menu-item index="3">圈子</el-menu-item>
         <el-menu-item index="4">竞赛</el-menu-item>
+        <el-menu-item index="5">
+          <img :src=imgSrc alt="">
+        </el-menu-item>
 
         <div class="flex-grow" />
         <el-menu-item index="1" id="header-input">
@@ -37,7 +40,7 @@ const handleClose = (done) => {
         <el-menu-item index="3">
             <el-dropdown>
                 <span class="el-dropdown-link">
-                    <img :src="imgSrc" alt="">
+                    username
                     <el-icon class="el-icon--right">
                         <arrow-down />
                     </el-icon>
