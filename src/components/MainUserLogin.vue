@@ -42,6 +42,7 @@ const SetUserImg = async () => {
     console.log(userId, userToken)
     const userPic = await GetUserDetails(userId, userToken)
     imgSrc.value=`http://49.232.134.192:8080/img/${userPic.data.userPic}`
+}
 </script>
 <template>
     <el-form ref="ruleFormRef" :rules="rules" style="max-width: 600px;margin-top: 20px;padding-bottom: 0;"

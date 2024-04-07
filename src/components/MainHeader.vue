@@ -5,7 +5,7 @@ import router from '@/router';
 const input = ref('')
 const dialogVisible = ref(false)
 const loginVisible = ref(true)
-let imgSrc = ref('')
+let imgSrc = ref('/src/assets/img/logo.webp')
 import {
     ArrowDown
 } from '@element-plus/icons-vue'
@@ -29,7 +29,7 @@ const handleClose = (done) => {
         <el-menu-item index="3">圈子</el-menu-item>
         <el-menu-item index="4">竞赛</el-menu-item>
         <el-menu-item index="5">
-          <img :src=imgSrc alt="">
+          <img :src=imgSrc alt="Element logo" style="width: 120px;height: auto">
         </el-menu-item>
 
         <div class="flex-grow" />
