@@ -5,7 +5,7 @@ const dialogVisible = ref(true)
 
 const handleClose = (done) => {
     done()
-    dialogVisible.value = 'false'
+    dialogVisible.value = false
 }
 
 </script>

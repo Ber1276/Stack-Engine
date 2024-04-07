@@ -8,16 +8,17 @@ import {
 
 } from '@element-plus/icons-vue'
 import { onMounted, ref } from 'vue'
+import MainList from '@/components/MainList.vue'
 
 const list = ref([])
 const isLoading = ref(true)
 const props = ref({ list, isLoading })
-const getlist = async () => {
+const getList = async () => {
     const res = (await instance.get('https://tenapi.cn/v2/baiduhot'))
     list.value = res.data.data
     isLoading.value = false
 }
-onMounted(getlist)
+onMounted(getList)
 
 </script>
 <template>
