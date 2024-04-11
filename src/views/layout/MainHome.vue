@@ -19,7 +19,6 @@ const getList = async () => {
     isLoading.value = false
 }
 onMounted(getList)
-
 </script>
 <template>
     <div class="common-layout">

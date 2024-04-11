@@ -24,22 +24,16 @@ const loginVisible = ref(true)
         <el-menu-item index="2" @click="router.push('/learn')">课程</el-menu-item>
         <el-menu-item index="3">圈子</el-menu-item>
         <el-menu-item index="4">竞赛</el-menu-item>
-        <el-menu-item index="5">
-            <img :src=imgSrc alt="Element logo" style="width: 120px;height: auto">
-        </el-menu-item>
-
         <div class="flex-grow" />
-        <el-menu-item index="1" id="header-input">
+        <el-menu-item index="5" id="header-input">
             <el-input v-model="input"  placeholder="搜你所想" clearable />
         </el-menu-item>
-        <el-menu-item index="2" @click="dialogVisible = true" v-if="loginVisible">登录</el-menu-item>
-        <el-menu-item index="3">
+        <div class="flex-grow" />
+        <el-menu-item index="6" @click="dialogVisible = true" v-if="loginVisible">登录</el-menu-item>
+        <el-menu-item index="7">
             <el-dropdown>
                 <span class="el-dropdown-link">
-                    username
-                    <el-icon class="el-icon--right">
-                        <arrow-down />
-                    </el-icon>
+                    <img :src=imgSrc alt="Element logo" style="width: 120px;height: auto">
                 </span>
                 <template #dropdown>
                     <el-dropdown-menu>
@@ -49,6 +43,7 @@ const loginVisible = ref(true)
                 </template>
             </el-dropdown>
         </el-menu-item>
+
 
     </el-menu>
     <!-- 登录弹出框 -->
@@ -62,13 +57,19 @@ const loginVisible = ref(true)
     </el-dialog>
 </template>
 <style scoped>
-.el-menu-demo {
-    width:100%;
-    margin: 0 auto;
-    padding: 0 5% 0 5%;
 
+.el-menu-demo {
+    border-top: 10px solid var(--el-color-primary);
+    width:100%;
+    --el-menu-horizontal-height: 60px;
+    margin: auto auto;
+    padding: 0 5% 0 5%;
     #header-input {
         border-bottom: none;
+        flex: 1.2;
+    }
+    .flex-grow{
+      flex:0.2;
     }
 }
 </style>

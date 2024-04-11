@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { defineModel } from 'vue';
-const count = ref(0)
 
+const count = ref(0)
 const load = () => {
     count.value += 2
 }
