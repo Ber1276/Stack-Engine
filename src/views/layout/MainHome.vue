@@ -23,12 +23,10 @@ onMounted(getList)
 </script>
 <template>
     <div class="common-layout">
-        <el-container>
-            <el-aside width="200px" class="first-aside">
+        <el-container class="el-container">
+            <el-aside width="200px" class="left-aside">
                 <el-row class="tac">
-                    <el-col :span="12">
-                        <h5 class="mb-2"></h5>
-                        <br>
+                    <el-col :span="24">
                         <el-menu default-active="1" class="el-menu-vertical-demo">
                             <el-menu-item index="1">
                                 <el-icon>
@@ -58,10 +56,10 @@ onMounted(getList)
                     </el-col>
                 </el-row>
             </el-aside>
-            <el-main>
+            <el-main class="el-main ">
                 <MainList v-model="props"></MainList>
             </el-main>
-            <el-aside>
+            <el-aside width="200px" class="right-aside">
                 <el-card class="right-card" style="max-width: 280px">
                     <template #header>
                         <div class="card-header">
@@ -79,30 +77,15 @@ onMounted(getList)
 
 <style scoped>
 .el-container {
-
     margin: 0 auto;
+    padding: 0 5% 0 5%;
     width: 100%;
-
-    .first-aside {
-        margin-top: -22px;
-        margin-left: 5%;
-        width: 200px;
+    .el-main{
+      --el-main-padding: 0 !important;
+      padding: 0 5px 0 5px;
     }
 
-    .right-card {
-        margin-top: 20px;
-    }
 }
 
-.el-row {
 
-    h5 {
-        text-align: center;
-        width: 180px;
-    }
-
-    .el-menu {
-        width: 200px
-    }
-}
 </style>

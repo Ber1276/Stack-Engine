@@ -54,8 +54,8 @@ const SetUserImg = async () => {
         <el-form-item label="密码" prop="password">
             <el-input v-model="ruleForm.password" type="password" autocomplete="off" />
         </el-form-item>
-        <el-form-item>
-            <el-button style="width: 600px;height: 40px;" type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
+        <el-form-item >
+            <el-button class="w-4/5 mx-auto" type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
         </el-form-item>
     </el-form>
 </template>
