@@ -56,8 +56,10 @@ const dialogVisible = ref(false)
 <style scoped>
 .el-menu-demo {
   position: fixed;
+  top: 0;
   left: 0;
   right: 0;
+  z-index: 99999;
   border-top: 2px solid var(--el-color-primary);
   --el-menu-horizontal-height: 60px;
   margin: auto auto;

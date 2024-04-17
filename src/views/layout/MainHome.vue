@@ -3,6 +3,7 @@ import instance from '@/utils/request'
 import { ChromeFilled, MagicStick, Bell, CoffeeCup } from '@element-plus/icons-vue'
 import { onMounted, ref } from 'vue'
 import MainList from '@/components/MainList.vue'
+import HomeCarousel from '@/components/HomeCarousel.vue'
 
 const list = ref([])
 const isLoading = ref(true)
@@ -50,6 +51,7 @@ onMounted(getList)
         </el-row>
       </el-aside>
       <el-main class="el-main">
+        <HomeCarousel></HomeCarousel>
         <MainList v-model="props"></MainList>
       </el-main>
       <el-aside width="200px" class="right-aside">
@@ -75,6 +77,9 @@ onMounted(getList)
   .el-main {
     --el-main-padding: 0 !important;
     padding: 0 5px 0 5px;
+  }
+  .left-aside {
+    --el-menu-bg-color: #f2f3f5;
   }
 }
 </style>
