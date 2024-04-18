@@ -2,7 +2,7 @@
 import { ref, reactive } from 'vue'
 import { defineModel } from 'vue'
 import { GetUserInfo, GetUserDetails } from '@/api/user.js'
-import { useUser } from '@/router/user.js'
+import { useUser } from '@/stores/modules/user.js'
 
 const dialogVisible = defineModel('dialogVisible')
 const UserStore = useUser()

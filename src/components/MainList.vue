@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 import { ref } from 'vue'
 import { defineModel } from 'vue'
 
@@ -6,7 +6,7 @@ const count = ref(0)
 const load = () => {
   count.value += 2
 }
-const modelvalue = defineModel()
+const modelValue = defineModel()
 </script>
 
 <template>
@@ -23,7 +23,7 @@ const modelvalue = defineModel()
           <el-button>最新</el-button>
         </div>
       </template>
-      <li v-for="(item, index) in modelvalue.list" :key="index" class="infinite-list-item">
+      <li v-for="(item, index) in modelValue.list" :key="index" class="infinite-list-item">
         <a :href="item.url">
           {{ item.name }}
         </a>
@@ -58,7 +58,7 @@ const modelvalue = defineModel()
   }
 }
 
-.infinite-list .infinite-list-item + .list-item {
+.infinite-list .infinite-list-item {
   margin-top: 10px;
 }
 </style>

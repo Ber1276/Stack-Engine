@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MainLearn from '@/views/layout/MainLearn.vue'
 import MainHome from '@/views/layout/MainHome.vue'
 import MainLayout from '@/views/layout/MainLayout.vue'
-import UserLayout from '@/views/login/UserLayout.vue'
+import UserLayout from '@/views/user/UserLayout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import router from '@/router'
 import MainUserLogin from '@/components/MainUserLogin.vue'
-import { useUser } from '@/router/user.js'
+import { useUser } from '@/stores/modules/user.js'
 
 const UserStore = useUser()
 const activeIndex = ref('1')
@@ -38,7 +38,7 @@ const dialogVisible = ref(false)
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>个人中心</el-dropdown-item>
+            <el-dropdown-item @click="router.push({ path: '/user' })"> 个人中心 </el-dropdown-item>
             <el-dropdown-item>退出账号</el-dropdown-item>
           </el-dropdown-menu>
         </template>

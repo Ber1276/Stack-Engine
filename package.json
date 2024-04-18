@@ -23,6 +23,7 @@
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/eslint-config-prettier": "^8.0.0",
     "autoprefixer": "^10.4.19",
+    "daisyui": "^4.10.2",
     "eslint": "^8.49.0",
     "eslint-plugin-vue": "^9.17.0",
     "pinia-plugin-persistedstate": "^3.2.1",

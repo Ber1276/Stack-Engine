@@ -81,5 +81,10 @@ onMounted(getList)
   .left-aside {
     --el-menu-bg-color: #f2f3f5;
   }
+  .right-aside {
+    .right-card {
+      resize: vertical;
+    }
+  }
 }
 </style>
