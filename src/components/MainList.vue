@@ -13,7 +13,7 @@ const modelValue = defineModel()
   <ul
     v-infinite-scroll="load"
     v-loading="modelValue.isLoading"
-    class="infinite-list"
+    class="infinite-list min-h-16"
     style="overflow: auto"
   >
     <el-card>
@@ -28,7 +28,6 @@ const modelValue = defineModel()
           {{ item.name }}
         </a>
       </li>
-      <template #footer>Footer content</template>
     </el-card>
   </ul>
 </template>

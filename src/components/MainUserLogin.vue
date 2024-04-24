@@ -1,10 +1,8 @@
 <script setup>
 import { ref, reactive } from 'vue'
-import { defineModel } from 'vue'
 import { GetUserInfo, GetUserDetails } from '@/api/user.js'
 import { useUser } from '@/stores/modules/user.js'
 
-const dialogVisible = defineModel('dialogVisible')
 const UserStore = useUser()
 
 const ruleFormRef = ref()
@@ -31,7 +29,7 @@ const submitForm = (formEl) => {
   if (!formEl) return
   formEl.validate((valid) => {
     if (valid) {
-      dialogVisible.value = false
+      UserStore.loginPopupVisible = false
       UserStore.isLogin = true
       LoginFn()
       SetUserImg()

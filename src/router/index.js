@@ -25,12 +25,12 @@ const router = createRouter({
           path: '/home',
           component: MainHome,
           name: 'MainHome'
+        },
+        {
+          path: '/user',
+          component: UserLayout
         }
       ]
-    },
-    {
-      path: '/user',
-      component: UserLayout
     }
   ]
 })

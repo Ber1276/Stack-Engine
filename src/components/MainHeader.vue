@@ -7,7 +7,12 @@ import { useUser } from '@/stores/modules/user.js'
 const UserStore = useUser()
 const activeIndex = ref('1')
 const input = ref('')
-const dialogVisible = ref(false)
+
+const logoutFn = () => {
+  UserStore.isLogin = false
+  localStorage.clear()
+  router.push('/home')
+}
 </script>
 <template>
   <!-- 导航栏 -->
@@ -28,7 +33,11 @@ const dialogVisible = ref(false)
       <el-input v-model="input" placeholder="搜你所想" clearable />
     </el-menu-item>
     <div class="flex-grow" />
-    <el-menu-item index="6" @click="dialogVisible = true" v-if="UserStore.isLogin !== true">
+    <el-menu-item
+      index="6"
+      @click="UserStore.loginPopupVisible = true"
+      v-if="UserStore.isLogin !== true"
+    >
       登录
     </el-menu-item>
     <el-menu-item index="7">
@@ -39,15 +48,15 @@ const dialogVisible = ref(false)
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="router.push({ path: '/user' })"> 个人中心 </el-dropdown-item>
-            <el-dropdown-item>退出账号</el-dropdown-item>
+            <el-dropdown-item @click="logoutFn">退出账号</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
     </el-menu-item>
   </el-menu>
   <!-- 登录弹出框 -->
-  <el-dialog v-model="dialogVisible" width="500" style="height: max-content" center>
-    <MainUserLogin v-model:dialogVisible="dialogVisible"> </MainUserLogin>
+  <el-dialog width="500" style="height: max-content" center v-model="UserStore.loginPopupVisible">
+    <MainUserLogin> </MainUserLogin>
     <div class="flex flex-col text-center">
       <p>没有账号？<a href="/user" style="text-decoration: none; color: black">注册</a></p>
     </div>

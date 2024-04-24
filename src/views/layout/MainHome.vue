@@ -4,6 +4,7 @@ import { ChromeFilled, MagicStick, Bell, CoffeeCup } from '@element-plus/icons-v
 import { onMounted, ref } from 'vue'
 import MainList from '@/components/MainList.vue'
 import HomeCarousel from '@/components/HomeCarousel.vue'
+import MainFooter from '@/components/MainFooter.vue'
 
 const list = ref([])
 const isLoading = ref(true)
@@ -66,6 +67,8 @@ onMounted(getList)
         </el-card>
       </el-aside>
     </el-container>
+
+    <MainFooter></MainFooter>
   </div>
 </template>
 
