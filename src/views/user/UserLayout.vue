@@ -1,53 +1,60 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
 import { useUser } from '@/stores/modules/user'
-import { Bell, ChromeFilled, CoffeeCup, MagicStick } from '@element-plus/icons-vue'
+import { Bell, ChromeFilled, CoffeeCup } from '@element-plus/icons-vue'
+import router from '@/router'
 const UserStore = useUser()
 
-import { use } from 'echarts/core'
-import { CanvasRenderer } from 'echarts/renderers'
-import { PieChart } from 'echarts/charts'
-import { TitleComponent, TooltipComponent, LegendComponent } from 'echarts/components'
+import { provide } from 'vue'
 import VChart, { THEME_KEY } from 'vue-echarts'
-import { ref, provide } from 'vue'
-
-use([CanvasRenderer, PieChart, TitleComponent, TooltipComponent, LegendComponent])
-
 provide(THEME_KEY, 'dark')
+import { use } from 'echarts/core'
+import { PieChart } from 'echarts/charts'
+import { TooltipComponent, LegendComponent } from 'echarts/components'
+import { CanvasRenderer } from 'echarts/renderers'
+
+use([TooltipComponent, LegendComponent, PieChart, CanvasRenderer])
 
 const option = ref({
-  title: {
-    text: 'Traffic Sources',
-    left: 'center'
-  },
   tooltip: {
-    trigger: 'item',
-    formatter: '{a} <br/>{b} : {c} ({d}%)'
+    trigger: 'item'
   },
   legend: {
-    orient: 'vertical',
-    left: 'left',
-    data: ['Direct', 'Email', 'Ad Networks', 'Video Ads', 'Search Engines']
+    top: '5%',
+    left: 'center'
   },
   series: [
     {
-      name: 'Traffic Sources',
+      name: 'Access From',
       type: 'pie',
-      radius: '55%',
-      center: ['50%', '60%'],
-      data: [
-        { value: 335, name: 'Direct' },
-        { value: 310, name: 'Email' },
-        { value: 234, name: 'Ad Networks' },
-        { value: 135, name: 'Video Ads' },
-        { value: 1548, name: 'Search Engines' }
-      ],
+      radius: ['40%', '70%'],
+      avoidLabelOverlap: false,
+      itemStyle: {
+        borderRadius: 10,
+        borderColor: '#fff',
+        borderWidth: 2
+      },
+      label: {
+        show: false,
+        position: 'center'
+      },
       emphasis: {
-        itemStyle: {
-          shadowBlur: 10,
-          shadowOffsetX: 0,
-          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        label: {
+          show: true,
+          fontSize: 40,
+          fontWeight: 'bold'
         }
-      }
+      },
+      labelLine: {
+        show: false
+      },
+      data: [
+        { value: 1048, name: 'Search Engine' },
+        { value: 735, name: 'Direct' },
+        { value: 580, name: 'Email' },
+        { value: 484, name: 'Union Ads' },
+        { value: 300, name: 'Video Ads' }
+      ]
     }
   ]
 })
@@ -82,7 +89,11 @@ const option = ref({
             <p class="mt-0 text-4xl text-green-500 text-left mb-2.5">个人中心</p>
             <el-row class="tac">
               <el-col :span="24">
-                <el-menu default-active="1" class="el-menu-vertical-demo">
+                <el-menu
+                  default-active="1"
+                  class="el-menu-vertical-demo"
+                  @click="router.push('/accountSetting')"
+                >
                   <el-menu-item index="1">
                     <el-icon>
                       <Bell />
@@ -101,17 +112,13 @@ const option = ref({
                     </el-icon>
                     <span>通知私信</span>
                   </el-menu-item>
-                  <el-menu-item index="4">
-                    <el-icon>
-                      <MagicStick />
-                    </el-icon>
-                    <span>人工智能</span>
-                  </el-menu-item>
                 </el-menu>
               </el-col>
             </el-row>
           </el-aside>
-          <el-main>Main</el-main>
+          <el-main>
+            <router-view></router-view>
+          </el-main>
         </el-container>
       </div>
     </div>
@@ -126,7 +133,7 @@ const option = ref({
   padding: calc(var(--el-menu-horizontal-height) + 20px) 5% 0 5%;
 }
 .chart {
-  height: 600px;
-  width: 600px;
+  height: 100px;
+  width: 100%;
 }
 </style>

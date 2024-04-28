@@ -22,3 +22,8 @@ export const GetUserImg = async (filename, token) =>
       fileName: filename
     }
   })
+export const RegisterPost = ({ username, password }) =>
+  instance.post('/user/register', {
+    username,
+    password
+  })

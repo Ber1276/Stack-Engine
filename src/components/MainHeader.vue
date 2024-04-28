@@ -33,6 +33,9 @@ const logoutFn = () => {
       <el-input v-model="input" placeholder="搜你所想" clearable />
     </el-menu-item>
     <div class="flex-grow" />
+    <el-menu-item>
+      <el-button class="creationCenter" @click="router.push('/create')"> 创作中心 </el-button>
+    </el-menu-item>
     <el-menu-item
       index="6"
       @click="UserStore.loginPopupVisible = true"
@@ -58,7 +61,7 @@ const logoutFn = () => {
   <el-dialog width="500" style="height: max-content" center v-model="UserStore.loginPopupVisible">
     <MainUserLogin> </MainUserLogin>
     <div class="flex flex-col text-center">
-      <p>没有账号？<a href="/user" style="text-decoration: none; color: black">注册</a></p>
+      <p>没有账号？<el-button @click="router.push('/register')" class="h-1">注册</el-button></p>
     </div>
   </el-dialog>
 </template>
@@ -73,6 +76,12 @@ const logoutFn = () => {
   --el-menu-horizontal-height: 60px;
   margin: auto auto;
   padding: 0 5% 0 5%;
+  .creationCenter {
+    --el-button-bg-color: purple;
+    --el-button-text-color: white;
+    --el-button-hover-bg-color: purple;
+    --el-button-hover-text-color: white;
+  }
   #header-input {
     border-bottom: none;
     flex: 1.2;
