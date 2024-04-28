@@ -1,7 +1,7 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import { RegisterPost } from '@/api/user.js'
-import { ElMessage } from 'element-plus'
+import router from '@/router/index.js'
 const ruleFormRef = ref()
 const registerDetails = ref({
   username: '',
@@ -21,14 +21,16 @@ const RegisterFn = async (formEl) => {
       try {
         const res = await RegisterPost(registerDetails.value)
         console.log(res.data.data)
+        ElMessage({ message: 'success', type: 'success' })
         formEl.resetFields()
+        setTimeout(() => {
+          router.push({ path: '/' })
+        }, 1000)
       } catch (error) {
-        alert(error.response.data.message)
-      } finally {
-        console.log('请求结束')
+        ElMessage({ message: error.response.data.message, type: 'error' })
       }
     } else {
-      ElMessage({ message: '表单校验失败', type: 'error' })
+      ElMessage({ message: '表单校验失败', type: 'error', duration: 0 })
       return false
     }
   })
