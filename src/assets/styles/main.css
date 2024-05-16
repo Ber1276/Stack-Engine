@@ -1,5 +1,14 @@
 #app {
   min-width: 1280px;
-  margin: -8px auto 0 auto;
-  background-color: #f2f3f5;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f3f5 ;
+  min-height: 100%;
 }
+html,body{
+  margin: 0;
+  padding: 0;
+  background-color: #f2f3f5 !important;
+}
+
+

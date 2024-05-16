@@ -125,6 +125,9 @@ const option = ref({
   </div>
 </template>
 <style scoped>
+.user-layout-container {
+  min-height: 100vh;
+}
 .common-layout {
   margin: 0 auto;
   padding: calc(var(--el-menu-horizontal-height) + 20px) 5% 0 5%;

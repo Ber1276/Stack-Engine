@@ -21,15 +21,18 @@ const RegisterFn = async (formEl) => {
       try {
         const res = await RegisterPost(registerDetails.value)
         console.log(res.data.data)
+        // eslint-disable-next-line no-undef
         ElMessage({ message: 'success', type: 'success' })
         formEl.resetFields()
         setTimeout(() => {
           router.push({ path: '/' })
         }, 1000)
       } catch (error) {
+        // eslint-disable-next-line no-undef
         ElMessage({ message: error.response.data.message, type: 'error' })
       }
     } else {
+      // eslint-disable-next-line no-undef
       ElMessage({ message: '表单校验失败', type: 'error', duration: 0 })
       return false
     }
