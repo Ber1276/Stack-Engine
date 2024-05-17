@@ -28,9 +28,14 @@ const handleCreated = (editor) => {
 </script>
 
 <template>
-  <div class="w-full px-4">
-    <Toolbar :editor="editorRef" :defaultConfig="toolbarConfig" />
-    <Editor v-model="valueHtml" :defaultConfig="editorConfig" @onCreated="handleCreated" />
+  <div class="w-full px-4 h-full">
+    <Toolbar class="h-1/5" :editor="editorRef" :defaultConfig="toolbarConfig" />
+    <Editor
+      style="height: 80%"
+      v-model="valueHtml"
+      :defaultConfig="editorConfig"
+      @onCreated="handleCreated"
+    />
   </div>
 </template>
 
