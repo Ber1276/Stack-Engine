@@ -1,5 +1,21 @@
 <script setup>
+import { ref } from 'vue'
 import WangEditor from '@/components/WangEditor.vue'
+const editorData = ref({
+  title: '',
+  cover: null,
+  content: '',
+  summary: '',
+  category: '',
+  visibleRange: '',
+  visibleTime: ''
+})
+const handleSubmit = () => {
+  console.log('submit', editorData.value)
+}
+const handleDelete = () => {
+  editorData.value.content = ''
+}
 </script>
 
 <template>
@@ -32,7 +48,7 @@ import WangEditor from '@/components/WangEditor.vue'
         </ul>
       </div>
       <div class="flex flex-col">
-        <wang-editor class="w-5/6 mx-auto h-1/2"></wang-editor>
+        <wang-editor class="w-5/6 mx-auto h-1/2" v-model="editorData"></wang-editor>
         <div class="control-container h-1/2 pt-8 flex flex-row justify-between">
           <div class="title-container w-1/4 pl-4 pr-4">
             <input
@@ -55,10 +71,16 @@ import WangEditor from '@/components/WangEditor.vue'
           </div>
           <div class="article-container w-1/4 px-4 flex flex-col">
             <div class="btn-group flex flex-row justify-around">
-              <button class="btn bg-white text-black hover:bg-primary hover:text-white">
+              <button
+                class="btn bg-white text-black hover:bg-primary hover:text-white"
+                @click="handleDelete"
+              >
                 删除
               </button>
-              <button class="btn bg-white text-black hover:bg-primary hover:text-white">
+              <button
+                class="btn bg-white text-black hover:bg-primary hover:text-white"
+                @click="handleSubmit"
+              >
                 发表
               </button>
             </div>

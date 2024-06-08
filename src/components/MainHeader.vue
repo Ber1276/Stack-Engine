@@ -24,10 +24,6 @@ const logoutFn = () => {
         alt="Element logo"
       />
     </el-menu-item>
-    <el-menu-item index="1" @click="router.push('/home')">首页</el-menu-item>
-    <el-menu-item index="2" @click="router.push('/learn')">课程</el-menu-item>
-    <el-menu-item index="3">圈子</el-menu-item>
-    <el-menu-item index="4">竞赛</el-menu-item>
     <div class="flex-grow" />
     <el-menu-item index="5" id="header-input">
       <el-input v-model="input" placeholder="搜你所想" clearable />
@@ -75,7 +71,7 @@ const logoutFn = () => {
   border-top: 2px solid var(--el-color-primary);
   --el-menu-horizontal-height: 60px;
   margin: auto auto;
-  padding: 0 5% 0 5%;
+  padding: 0;
   .creationCenter {
     --el-button-bg-color: purple;
     --el-button-text-color: white;

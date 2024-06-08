@@ -1,8 +1,8 @@
 <script setup></script>
 
 <template>
-  <div class="bg-white mt-20">
-    <el-descriptions :column="6" :direction="'vertical'" class="px-48 pt-10">
+  <div class="bg-white mt-10">
+    <el-descriptions :column="6" :direction="'vertical'" class="px-24 pt-10">
       <el-descriptions-item
         label="产品"
         label-align="left"
@@ -89,7 +89,7 @@
       </el-descriptions-item>
     </el-descriptions>
     <el-divider></el-divider>
-    <div class="flex px-48 pt-10 pb-16 justify-between">
+    <div class="flex px-24 pt-10 pb-16 justify-between">
       <div>
         <p>Copyright</p>
         <p>浙xxxxx号-2浙公网安备xxxxxx号ICP 经营许可 浙xxxxxxxxx</p>

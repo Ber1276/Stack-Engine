@@ -89,24 +89,20 @@ const option = ref({
             <p class="mt-0 text-4xl text-green-500 text-left mb-2.5">个人中心</p>
             <el-row class="tac">
               <el-col :span="24">
-                <el-menu
-                  default-active="1"
-                  class="el-menu-vertical-demo"
-                  @click="router.push('/accountSetting')"
-                >
-                  <el-menu-item index="1">
+                <el-menu default-active="1" class="el-menu-vertical-demo">
+                  <el-menu-item index="1" @click="router.push('/accountSetting')">
                     <el-icon>
                       <Bell />
                     </el-icon>
                     <span>账号设置</span>
                   </el-menu-item>
-                  <el-menu-item index="2">
+                  <el-menu-item index="2" @click="router.push('/personalData')">
                     <el-icon>
                       <CoffeeCup />
                     </el-icon>
                     <span>个人资料</span>
                   </el-menu-item>
-                  <el-menu-item index="3">
+                  <el-menu-item index="3" @click="router.push('/notificationMessage')">
                     <el-icon>
                       <ChromeFilled />
                     </el-icon>
