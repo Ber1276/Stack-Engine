@@ -63,20 +63,24 @@ const logoutFn = () => {
 </template>
 <style scoped>
 .el-menu-demo {
+  --el-menu-bg-color: var(--main-color-bg);
+  --el-menu-hover-bg-color: var(--main-color-hover-bg);
+  --el-menu-text-color: var(--main-color-text);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 99999;
   border-top: 2px solid var(--el-color-primary);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   --el-menu-horizontal-height: 60px;
   margin: auto auto;
   padding: 0;
   .creationCenter {
-    --el-button-bg-color: purple;
-    --el-button-text-color: white;
-    --el-button-hover-bg-color: purple;
-    --el-button-hover-text-color: white;
+    --el-button-bg-color: var(--main-color-base);
+    --el-button-text-color: var(--main-color-normal);
+    --el-button-hover-bg-color: var(--main-color-base);
+    --el-button-hover-text-color: var(--main-color-normal);
   }
   #header-input {
     border-bottom: none;

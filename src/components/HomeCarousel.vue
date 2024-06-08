@@ -9,12 +9,17 @@
 </template>
 
 <style scoped>
-.el-carousel__item h3 {
-  color: #475669;
-  opacity: 0.75;
-  line-height: 300px;
-  margin: 0;
-  text-align: center;
+.el-carousel {
+  max-height: 200px;
+  .el-carousel__item {
+    h3 {
+      color: #475669;
+      opacity: 0.75;
+      line-height: 200px;
+      margin: 0;
+      text-align: center;
+    }
+  }
 }
 
 .el-carousel__item:nth-child(2n) {

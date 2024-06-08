@@ -37,7 +37,7 @@ import { Bell, ChromeFilled, CoffeeCup, MagicStick } from '@element-plus/icons-v
   left: 0;
   top: calc(var(--el-menu-horizontal-height));
   min-height: 100vh;
-  width: 250px;
+  width: var(--main-aside-width);
   --el-menu-bg-color: #fff;
 }
 </style>

@@ -12,7 +12,8 @@ import MainAside from '@/components/MainAside.vue'
 <style scoped>
 .main-router-view {
   position: relative;
-  left: 250px;
-  max-width: calc(100% - 250px);
+  left: var(--main-aside-width);
+  top: var(--el-menu-horizontal-height);
+  width: calc(100% - var(--main-aside-width));
 }
 </style>

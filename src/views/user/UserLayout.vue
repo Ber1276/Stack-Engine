@@ -1,63 +1,8 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { useUser } from '@/stores/modules/user'
 import { Bell, ChromeFilled, CoffeeCup } from '@element-plus/icons-vue'
 import router from '@/router'
 const UserStore = useUser()
-
-import { provide } from 'vue'
-import VChart, { THEME_KEY } from 'vue-echarts'
-provide(THEME_KEY, 'dark')
-import { use } from 'echarts/core'
-import { PieChart } from 'echarts/charts'
-import { TooltipComponent, LegendComponent } from 'echarts/components'
-import { CanvasRenderer } from 'echarts/renderers'
-
-use([TooltipComponent, LegendComponent, PieChart, CanvasRenderer])
-
-const option = ref({
-  tooltip: {
-    trigger: 'item'
-  },
-  legend: {
-    top: '5%',
-    left: 'center'
-  },
-  series: [
-    {
-      name: 'Access From',
-      type: 'pie',
-      radius: ['40%', '70%'],
-      avoidLabelOverlap: false,
-      itemStyle: {
-        borderRadius: 10,
-        borderColor: '#fff',
-        borderWidth: 2
-      },
-      label: {
-        show: false,
-        position: 'center'
-      },
-      emphasis: {
-        label: {
-          show: true,
-          fontSize: 40,
-          fontWeight: 'bold'
-        }
-      },
-      labelLine: {
-        show: false
-      },
-      data: [
-        { value: 1048, name: 'Search Engine' },
-        { value: 735, name: 'Direct' },
-        { value: 580, name: 'Email' },
-        { value: 484, name: 'Union Ads' },
-        { value: 300, name: 'Video Ads' }
-      ]
-    }
-  ]
-})
 </script>
 <template>
   <div class="user-layout-container">
@@ -77,9 +22,6 @@ const option = ref({
           />
         </svg>
         <span>您尚未登录，请登录后查看此页</span>
-      </div>
-      <div id="test-chart">
-        <v-chart class="chart" :option="option" autoresize />
       </div>
     </div>
     <div v-else>
@@ -126,13 +68,9 @@ const option = ref({
 }
 .common-layout {
   margin: 0 auto;
-  padding: calc(var(--el-menu-horizontal-height) + 20px) 5% 0 5%;
+  padding: 10px;
 }
 .alert-container {
-  padding: calc(var(--el-menu-horizontal-height) + 20px) 5% 0 5%;
-}
-.chart {
-  height: 100px;
-  width: 100%;
+  padding: 10px;
 }
 </style>

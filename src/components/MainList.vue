@@ -34,9 +34,10 @@ const modelValue = defineModel()
 
 <style>
 .infinite-list {
+  min-height: 500px;
   height: max-content;
   padding: 0;
-  margin: 0;
+  margin: 10px 0 0 0;
   list-style: none;
   width: 100%;
 }
@@ -46,14 +47,12 @@ const modelValue = defineModel()
   align-items: center;
   justify-content: center;
   height: max-content;
-  background: var(--el-color-primary-light-9);
+  background: var(--main-color-normal);
   margin: 10px;
-  color: var(--el-color-primary);
-
   a,
   a:hover {
     text-decoration: none;
-    color: #67c23a;
+    color: var(--el-color-primary);
   }
 }
 

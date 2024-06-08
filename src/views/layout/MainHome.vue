@@ -22,8 +22,8 @@ onMounted(getList)
         <HomeCarousel></HomeCarousel>
         <MainList v-model="props"></MainList>
       </el-main>
-      <el-aside width="200px" class="right-aside">
-        <el-card class="right-card" style="max-width: 280px">
+      <el-aside class="right-aside">
+        <el-card class="right-card">
           <template #header>
             <div class="card-header">
               <span>Card name</span>
@@ -40,13 +40,24 @@ onMounted(getList)
 </template>
 
 <style scoped>
-.el-container {
-  margin: 0 auto;
-  padding: calc(var(--el-menu-horizontal-height) + 20px) 0 0 0;
-  width: 100%;
-  .el-main {
-    --el-main-padding: 0 !important;
-    padding: 0 5px 0 5px;
+.common-layout {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  .el-container {
+    padding: 10px 10px 0 10px;
+    margin: 0 auto;
+    width: 100%;
+    .el-main {
+      padding: 0 10px 0 0;
+      max-width: 900px;
+    }
+    .right-aside {
+      width: 300px;
+      .right-card {
+        width: 100%;
+      }
+    }
   }
 }
 </style>
