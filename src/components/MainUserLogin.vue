@@ -18,22 +18,27 @@ const rules = reactive({
   ]
 })
 
-const LoginFn = async () => {
-  const res = await GetUserInfo(ruleForm.value)
-  localStorage.setItem('token', res.data.data.token)
-  UserStore.token = res.data.data.token
-  localStorage.setItem('id', res.data.data.id)
-  UserStore.userId = res.data.data.id
+const LoginFn = async (formEl) => {
+  try {
+    const res = await GetUserInfo(ruleForm.value)
+    localStorage.setItem('token', res.data.data.token)
+    localStorage.setItem('id', res.data.data.id)
+    formEl.resetFields()
+    UserStore.token = res.data.data.token
+    UserStore.userId = res.data.data.id
+    UserStore.loginPopupVisible = false
+    UserStore.isLogin = true
+    ElMessage({ type: 'success', message: '登录成功' })
+    await SetUserImg()
+  } catch (err) {
+    ElMessage({ type: 'error', message: err })
+  }
 }
 const submitForm = (formEl) => {
   if (!formEl) return
   formEl.validate((valid) => {
     if (valid) {
-      UserStore.loginPopupVisible = false
-      UserStore.isLogin = true
-      LoginFn()
-      SetUserImg()
-      formEl.resetFields()
+      LoginFn(formEl)
     } else {
       console.log('登录表单校验出错')
       return false
@@ -43,7 +48,6 @@ const submitForm = (formEl) => {
 const SetUserImg = async () => {
   const userId = localStorage.getItem('id')
   const userToken = localStorage.getItem('token')
-  console.log('用户信息：', userId, userToken)
   const userPic = await GetUserDetails(userId, userToken)
   UserStore.userImg = `http://49.232.134.192:8080/img/${userPic.data.userPic}`
 }
@@ -52,11 +56,10 @@ const SetUserImg = async () => {
   <el-form
     ref="ruleFormRef"
     :rules="rules"
-    style="max-width: 600px; margin-top: 20px; padding-bottom: 0"
     :model="ruleForm"
     status-icon
     label-width="auto"
-    class="demo-ruleForm"
+    class="demo-ruleForm pt-8 px-4"
     label-position="right"
     hide-required-asterisk
   >

@@ -19,20 +19,16 @@ const RegisterFn = async (formEl) => {
   await formEl.validate(async (valid) => {
     if (valid) {
       try {
-        const res = await RegisterPost(registerDetails.value)
-        console.log(res.data.data)
-        // eslint-disable-next-line no-undef
+        await RegisterPost(registerDetails.value)
         ElMessage({ message: 'success', type: 'success' })
         formEl.resetFields()
         setTimeout(() => {
           router.push({ path: '/' })
         }, 1000)
       } catch (error) {
-        // eslint-disable-next-line no-undef
         ElMessage({ message: error.response.data.message, type: 'error' })
       }
     } else {
-      // eslint-disable-next-line no-undef
       ElMessage({ message: '表单校验失败', type: 'error', duration: 0 })
       return false
     }
@@ -42,7 +38,7 @@ const RegisterFn = async (formEl) => {
 
 <template>
   <div>
-    <div class="hero min-h-screen bg-primary">
+    <div class="hero min-h-screen bg-blue-500">
       <div class="hero-content flex-col lg:flex-row">
         <div class="text-center lg:text-left min-w-96 text-green-50">
           <h1 class="text-5xl font-bold">Register now!</h1>
@@ -82,9 +78,9 @@ const RegisterFn = async (formEl) => {
 
 <style scoped>
 .register-button {
-  --el-button-bg-color: #7480ff;
-  --el-button-active-bg-color: #7480ff;
-  --el-button-hover-bg-color: #7480ff;
+  --el-button-bg-color: var(--el-color-primary);
+  --el-button-active-bg-color: var(--el-color-primary);
+  --el-button-hover-bg-color: var(--el-color-primary);
   --el-button-text-color: white;
   --el-button-hover-text-color: white;
   --el-button-active-text-color: white;

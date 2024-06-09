@@ -56,5 +56,11 @@ const router = createRouter({
     }
   ]
 })
+router.beforeEach(async (to) => {
+  if (to.path === '/create' && !localStorage.getItem('token')) {
+    ElMessage({ type: 'warning', message: '请先登录' })
+    return false
+  }
+})
 
 export default router

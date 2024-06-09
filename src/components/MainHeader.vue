@@ -54,7 +54,7 @@ const logoutFn = () => {
     </el-menu-item>
   </el-menu>
   <!-- 登录弹出框 -->
-  <el-dialog width="500" style="height: max-content" center v-model="UserStore.loginPopupVisible">
+  <el-dialog width="500" align-center v-model="UserStore.loginPopupVisible">
     <MainUserLogin> </MainUserLogin>
     <div class="flex flex-col text-center">
       <p>没有账号？<el-button @click="router.push('/register')" class="h-1">注册</el-button></p>

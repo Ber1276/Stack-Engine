@@ -10,6 +10,6 @@ import pinia from './stores/index' //状态
 const app = createApp(App)
 
 //挂载
-app.use(router)
 app.use(pinia)
+app.use(router)
 app.mount('#app')
