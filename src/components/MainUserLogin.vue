@@ -2,6 +2,7 @@
 import { ref, reactive } from 'vue'
 import { GetUserInfo, GetUserDetails } from '@/api/user.js'
 import { useUser } from '@/stores/modules/user.js'
+import { ElMessage } from 'element-plus'
 
 const UserStore = useUser()
 
@@ -31,7 +32,8 @@ const LoginFn = async (formEl) => {
     ElMessage({ type: 'success', message: '登录成功' })
     await SetUserImg()
   } catch (err) {
-    ElMessage({ type: 'error', message: err })
+    console.log(err.response.data.message)
+    ElMessage({ type: 'error', message: err.response.data.message })
   }
 }
 const submitForm = (formEl) => {

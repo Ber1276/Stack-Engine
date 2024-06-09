@@ -8,6 +8,7 @@ import notificationMessage from '@/views/user/modules/notificationMessage.vue'
 import personalData from '@/views/user/modules/personalData.vue'
 import creationCenter from '@/views/create/creationCenter.vue'
 import registerLayout from '@/views/layout/RegisterLayout.vue'
+import { ElMessage } from 'element-plus'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
