@@ -36,6 +36,7 @@ onMounted(() => {
 })
 
 //封面上传
+const token = { token: localStorage.getItem('token') }
 const fileList = ref([])
 const handleRemove = (file, uploadFiles) => {
   console.log(file, uploadFiles)
@@ -55,6 +56,10 @@ const beforeRemove = (uploadFile) => {
     () => true,
     () => false
   )
+}
+const handleSuccess = (response, file) => {
+  console.log(response)
+  console.log(file)
 }
 </script>
 
@@ -76,13 +81,18 @@ const beforeRemove = (uploadFile) => {
         <el-upload
           v-model:file-list="fileList"
           class="upload-demo"
-          action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-          multiple
+          action="http://49.232.134.192:8081/article/upload/file"
+          :headers="token"
           :on-preview="handlePreview"
           :on-remove="handleRemove"
           :before-remove="beforeRemove"
           :limit="1"
           :on-exceed="handleExceed"
+          :on-success="
+            (response, file) => {
+              return handleSuccess(response, file)
+            }
+          "
         >
           <el-button type="primary" style="height: 28px; width: 240px">Click to upload</el-button>
         </el-upload>
