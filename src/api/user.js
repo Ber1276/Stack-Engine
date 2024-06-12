@@ -27,3 +27,11 @@ export const RegisterPost = ({ username, password }) =>
     username,
     password
   })
+export const PostSubmitArticle = async (data, token) => {
+  const { data: res } = await instance.post('/article/publish', data, {
+    headers: {
+      token: token
+    }
+  })
+  return res
+}
