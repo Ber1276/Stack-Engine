@@ -2,6 +2,7 @@
 import { reactive, ref } from 'vue'
 import { RegisterPost } from '@/api/user.js'
 import router from '@/router/index.js'
+import { ElMessage } from 'element-plus'
 const ruleFormRef = ref()
 const registerDetails = ref({
   username: '',

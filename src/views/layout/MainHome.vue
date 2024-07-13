@@ -44,16 +44,20 @@ onMounted(getList)
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
   .el-container {
     padding: 10px 10px 0 10px;
     margin: 0 auto;
     width: 100%;
+
     .el-main {
       padding: 0 10px 0 0;
-      max-width: 900px;
+      max-width: 1000px;
     }
+
     .right-aside {
       width: 300px;
+
       .right-card {
         width: 100%;
       }
