@@ -47,3 +47,13 @@ export const GetArticleList = async (page, token) => {
     }
   })
 }
+export const DeleteArticle = async (id, token) => {
+  return await instance.delete(`/article/delete/`, {
+    headers: {
+      token: token
+    },
+    params: {
+      articleId: id
+    }
+  })
+}

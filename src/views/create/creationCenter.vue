@@ -1,14 +1,47 @@
 <script setup>
 import WangEditor from '@/components/WangEditor.vue'
+import { onMounted, ref } from 'vue'
+import { Delete } from '@element-plus/icons-vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { GetArticleList } from '@/api/user.js'
-import { onMounted } from 'vue'
-let userArticleList = []
-onMounted(() => {
-  GetArticleList(1, localStorage.getItem('token')).then((res) => {
-    userArticleList = res.data.data.records
-    console.log(userArticleList)
+import { DeleteArticle } from '@/api/user.js'
+
+//数据
+const userArticleList = ref([])
+
+//渲染侧边文章列表
+const renderList = async () => {
+  const res = await GetArticleList(1, localStorage.getItem('token'))
+  userArticleList.value = res.data.data.records
+  console.log(res.data.data.records)
+}
+onMounted(renderList)
+
+//删除选中文章
+const deleteArticle = (id) => {
+  ElMessageBox.confirm('是否删除该文章', '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning'
   })
-})
+    .then(() => {
+      DeleteArticle(id, localStorage.getItem('token')).then((res) => {
+        if (res.data.code === 200) {
+          renderList()
+        }
+      })
+      ElMessage({
+        type: 'success',
+        message: '删除成功!'
+      })
+    })
+    .catch(() => {
+      ElMessage({
+        type: 'info',
+        message: '已取消删除'
+      })
+    })
+}
 </script>
 
 <template>
@@ -53,10 +86,20 @@ onMounted(() => {
     </div>
     <div class="drawer-side">
       <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-      <ul class="menu p-4 w-60 min-h-full bg-white text-base-content">
+      <ul class="p-4 w-60 min-h-full bg-white list-none">
         <!-- Sidebar content here -->
-        <li v-for="item in userArticleList" :key="item.id">
-          <a>{{ item.title }}</a>
+        <li class="text-left text-2xl mb-4 text-blue-500 font-bold">文件列表</li>
+        <li
+          v-for="item in userArticleList"
+          :key="item.id"
+          class="h-10 hover:bg-white hover:text-blue-500"
+        >
+          <div class="relative h-10">
+            <a style="line-height: 40px">{{ item.title }}</a>
+            <el-icon class="right-2 top-3.5 absolute align-middle" @click="deleteArticle(item.id)"
+              ><Delete
+            /></el-icon>
+          </div>
         </li>
       </ul>
     </div>
