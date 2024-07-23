@@ -1,5 +1,14 @@
 <script setup>
 import WangEditor from '@/components/WangEditor.vue'
+import { GetArticleList } from '@/api/user.js'
+import { onMounted } from 'vue'
+let userArticleList = []
+onMounted(() => {
+  GetArticleList(1, localStorage.getItem('token')).then((res) => {
+    userArticleList = res.data.data.records
+    console.log(userArticleList)
+  })
+})
 </script>
 
 <template>
@@ -46,8 +55,9 @@ import WangEditor from '@/components/WangEditor.vue'
       <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
       <ul class="menu p-4 w-60 min-h-full bg-white text-base-content">
         <!-- Sidebar content here -->
-        <li><a>Sidebar Item 1</a></li>
-        <li><a>Sidebar Item 2</a></li>
+        <li v-for="item in userArticleList" :key="item.id">
+          <a>{{ item.title }}</a>
+        </li>
       </ul>
     </div>
   </div>

@@ -1,4 +1,5 @@
 import instance from '../utils/request.js'
+
 export const GetUserInfo = ({ username, password }) =>
   instance.post('user/login', {
     username,
@@ -34,4 +35,15 @@ export const PostSubmitArticle = async (data, token) => {
     }
   })
   return res
+}
+export const GetArticleList = async (page, token) => {
+  return await instance.get('/article/page/query', {
+    headers: {
+      token: token
+    },
+    params: {
+      pageNo: page,
+      pageSize: 8
+    }
+  })
 }
