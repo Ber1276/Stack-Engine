@@ -11,7 +11,13 @@ const userArticleList = ref([])
 
 //渲染侧边文章列表
 const renderList = async () => {
-  const res = await GetArticleList(1, localStorage.getItem('token'))
+  const payload = {
+    pageNo: 1,
+    pageSize: 10,
+    author: localStorage.getItem('username'),
+    token: localStorage.getItem('token')
+  }
+  const res = await GetArticleList(payload)
   userArticleList.value = res.data.data.records
   console.log(res.data.data.records)
 }

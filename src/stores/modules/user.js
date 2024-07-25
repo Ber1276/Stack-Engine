@@ -9,7 +9,8 @@ export const useUser = defineStore(
     const token = ref(localStorage.getItem('token') || '')
     const userId = ref('')
     const userImg = ref('/src/assets/img/logo.webp')
-    return { isLogin, token, userId, userImg, loginPopupVisible }
+    const userName = ref('')
+    return { isLogin, token, userId, userImg, loginPopupVisible, userName }
   },
   {
     persist: false

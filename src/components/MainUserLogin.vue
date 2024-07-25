@@ -24,6 +24,7 @@ const LoginFn = async (formEl) => {
     const res = await GetUserInfo(ruleForm.value)
     localStorage.setItem('token', res.data.data.token)
     localStorage.setItem('id', res.data.data.id)
+    localStorage.setItem('username', res.data.data.username)
     formEl.resetFields()
     UserStore.token = res.data.data.token
     UserStore.userId = res.data.data.id
