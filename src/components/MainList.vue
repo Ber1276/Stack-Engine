@@ -20,7 +20,6 @@ const modelValue = defineModel()
       <template #header>
         <div class="card-header">
           <el-button>推荐</el-button>
-          <el-button>最新</el-button>
         </div>
       </template>
       <li v-for="(item, index) in modelValue.list" :key="index" class="infinite-list-item">
