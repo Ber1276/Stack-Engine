@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-import HomeCarousel from '@/components/HomeCarousel.vue'
-import MainFooter from '@/components/MainFooter.vue'
+import HomeCarousel from '@/components/Main/HomeCarousel.vue'
+import MainFooter from '@/components/Main/MainFooter.vue'
 import { GetArticleList } from '@/api/public.js'
 
 const list = ref([])
@@ -86,6 +86,7 @@ onMounted(getList)
     }
   }
 }
+
 .infinite-list {
   min-height: 500px;
   height: max-content;
@@ -99,23 +100,28 @@ onMounted(getList)
   a {
     padding: 10px;
     height: 88px;
+
     .list-item-reading {
       line-height: 68px;
       width: 80px;
     }
+
     .list-item-author {
       line-height: 68px;
       width: 200px;
     }
+
     div {
       width: 600px;
       position: relative;
+
       .list-item-title {
         font-size: 36px;
         position: absolute;
         top: 0;
         margin-top: -10px;
       }
+
       .list-item-summary {
         font-size: 12px;
         position: absolute;

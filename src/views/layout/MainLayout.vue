@@ -1,7 +1,7 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import MainHeader from '@/components/MainHeader.vue'
-import MainAside from '@/components/MainAside.vue'
+import MainHeader from '@/components/Main/MainHeader.vue'
+import MainAside from '@/components/Main/MainAside.vue'
 </script>
 <template>
   <MainHeader></MainHeader>
@@ -15,5 +15,6 @@ import MainAside from '@/components/MainAside.vue'
   left: var(--main-aside-width);
   top: var(--el-menu-horizontal-height);
   width: calc(100% - var(--main-aside-width));
+  overflow: hidden;
 }
 </style>

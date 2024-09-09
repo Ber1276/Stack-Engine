@@ -1,5 +1,5 @@
 <script setup>
-import WangEditor from '@/components/WangEditor.vue'
+import WangEditor from '@/components/Create/WangEditor.vue'
 import { onMounted, ref } from 'vue'
 import { Delete, House } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
@@ -59,12 +59,7 @@ const deleteArticle = (id) => {
         <div class="flex-none">
           <label for="my-drawer" class="btn btn-primary drawer-button">
             <svg fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              ></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </label>
         </div>
@@ -73,7 +68,9 @@ const deleteArticle = (id) => {
         </div>
         <div class="flex-none">
           <button class="btn btn-square btn-ghost" @click="router.push('/home')">
-            <el-icon><House /></el-icon>
+            <el-icon>
+              <House />
+            </el-icon>
           </button>
         </div>
       </div>
@@ -84,16 +81,12 @@ const deleteArticle = (id) => {
       <ul class="p-4 w-60 min-h-full bg-white list-none">
         <!-- Sidebar content here -->
         <li class="text-left text-2xl mb-4 text-blue-500 font-bold">文件列表</li>
-        <li
-          v-for="item in userArticleList"
-          :key="item.id"
-          class="h-10 hover:bg-white hover:text-blue-500"
-        >
+        <li v-for="item in userArticleList" :key="item.id" class="h-10 hover:bg-white hover:text-blue-500">
           <div class="relative h-10">
             <a style="line-height: 40px">{{ item.title }}</a>
-            <el-icon class="right-2 top-3.5 absolute align-middle" @click="deleteArticle(item.id)"
-              ><Delete
-            /></el-icon>
+            <el-icon class="right-2 top-3.5 absolute align-middle" @click="deleteArticle(item.id)">
+              <Delete />
+            </el-icon>
           </div>
         </li>
       </ul>

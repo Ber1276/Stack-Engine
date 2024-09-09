@@ -1,14 +1,13 @@
-#app {
-  min-width: 1280px;
+*,
+html,
+body {
   margin: 0;
   padding: 0;
-  background-color: #f2f3f5 ;
-  min-height: 100%;
+  box-sizing: border-box;
 }
-html,body{
-  margin: 0;
-  padding: 0;
+body {
   background-color: #f2f3f5 !important;
 }
-
-
+.ant-modal div[aria-hidden='true'] {
+  display: none !important;
+}

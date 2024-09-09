@@ -10,8 +10,5 @@ export const useCounter = defineStore(
       count.value++
     }
     return { count, doubleCount, increment }
-  },
-  {
-    persist: true
   }
 )
