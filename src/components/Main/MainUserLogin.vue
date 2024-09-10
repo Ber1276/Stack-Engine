@@ -46,6 +46,8 @@ const LoginFn = async (formEl) => {
     //保存用户信息
     const result = await GetUserInfo(ruleForm.value)
     const res = result.data.data
+    console.log(res);
+
     localStorage.setItem('token', res.token)
     ElMessage({ type: 'success', message: '登录成功' })
     UserStore.token = res.token
@@ -53,7 +55,7 @@ const LoginFn = async (formEl) => {
     UserStore.userName = res.username
     UserStore.isLogin = true
     const userPic = await GetUserDetails(res.id, res.token)
-    UserStore.userImg = `http://49.232.134.192:8080/img/${userPic.userPic}`
+    UserStore.userImg = `http://49.232.134.192:8080/img/${userPic.data.userPic}`
     formEl.resetFields()
     closePop()
   } catch (err) {

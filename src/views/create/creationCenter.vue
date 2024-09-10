@@ -6,8 +6,10 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { GetArticleList } from '@/api/user.js'
 import { DeleteArticle } from '@/api/user.js'
 import router from '@/router'
+import { useUser } from '@/stores'
 
 //数据
+const userState = useUser()
 const userArticleList = ref([])
 
 //渲染侧边文章列表
@@ -15,12 +17,12 @@ const renderList = async () => {
   const payload = {
     pageNo: 1,
     pageSize: 10,
-    author: localStorage.getItem('username'),
+    userId: userState.userId,
     token: localStorage.getItem('token')
   }
   const res = await GetArticleList(payload)
+
   userArticleList.value = res.data.data.records
-  console.log(res.data.data.records)
 }
 onMounted(renderList)
 
@@ -31,16 +33,19 @@ const deleteArticle = (id) => {
     cancelButtonText: '取消',
     type: 'warning'
   })
-    .then(() => {
-      DeleteArticle(id, localStorage.getItem('token')).then((res) => {
-        if (res.data.code === 200) {
-          renderList()
-        }
-      })
-      ElMessage({
-        type: 'success',
-        message: '删除成功!'
-      })
+    .then(async () => {
+      try {
+        const res = DeleteArticle(id, localStorage.getItem('token'))
+        res
+        renderList()
+        ElMessage({
+          type: 'success',
+          message: '删除成功!'
+        })
+      }
+      catch (err) {
+        console.log('删除错误', err);
+      }
     })
     .catch(() => {
       ElMessage({
@@ -78,7 +83,7 @@ const deleteArticle = (id) => {
       </div>
 
       <div class="editor">
-        <wang-editor></wang-editor>
+        <wang-editor @submit-success="renderList"></wang-editor>
       </div>
     </div>
 
@@ -120,7 +125,7 @@ const deleteArticle = (id) => {
   width: 220px;
   padding: 10px;
   height: 680px;
-  overflow: scroll;
+  overflow: hidden;
 
   .title {
     font-size: 20px;

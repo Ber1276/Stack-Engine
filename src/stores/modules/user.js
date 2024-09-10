@@ -2,8 +2,8 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useUser = defineStore(
-  'useUser',
-  () => {
+  'useUser', {
+  state: () => {
     const isLogin = ref(typeof localStorage.getItem('token') === 'string' || false)
     const token = ref(localStorage.getItem('token') || '')
     const userId = ref('')
@@ -18,5 +18,9 @@ export const useUser = defineStore(
     }
 
     return { isLogin, token, userId, userImg, userName, $reset }
+  },
+  persist: {
+    enabled: true
   }
+}
 )

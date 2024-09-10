@@ -12,6 +12,7 @@ const UserStore = useUser()
 const input = ref('')
 const activeIndex = ref('1')
 const loginPopupVisible = ref(false)
+const imgSrc = ref(UserStore.userImg)
 
 //函数声明
 const logoutFn = () => {
@@ -20,6 +21,10 @@ const logoutFn = () => {
   localStorage.clear()
   router.push('/home')
   location.reload()
+}
+const handleClosePop = () => {
+  loginPopupVisible.value = false
+  imgSrc.value = UserStore.userImg
 }
 </script>
 <template>
@@ -57,7 +62,7 @@ const logoutFn = () => {
 
         <span class="el-dropdown-link">
 
-          <img :src="UserStore.userImg" alt="Element logo" />
+          <img :src="imgSrc" alt="Element logo" />
 
         </span>
 
@@ -79,7 +84,7 @@ const logoutFn = () => {
   <!--------------------------------登录弹出框开始------------------------------->
 
   <el-dialog width="500" align-center v-model="loginPopupVisible">
-    <MainUserLogin @close-popup="loginPopupVisible = false"> </MainUserLogin>
+    <MainUserLogin @close-popup="handleClosePop"> </MainUserLogin>
   </el-dialog>
 
   <!--------------------------------登录弹出框开始------------------------------->

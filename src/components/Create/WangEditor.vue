@@ -5,6 +5,8 @@ import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import '@wangeditor/editor/dist/css/style.css'
 import { PostSubmitArticle } from '@/api/user.js'
 
+//传出emit
+const emit = defineEmits(['submitSuccess'])
 
 // 编辑器实例，必须用 shallowRef
 const editorRef = shallowRef()
@@ -95,6 +97,7 @@ const handleSubmit = async (data, token) => {
   try {
     const res = await PostSubmitArticle(data, token)
     console.log(res.message)
+    emit('submitSuccess')
     ElMessage({
       type: 'success',
       message: res.message
