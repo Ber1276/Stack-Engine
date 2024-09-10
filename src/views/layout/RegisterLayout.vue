@@ -38,43 +38,24 @@ const RegisterFn = async (formEl) => {
 </script>
 
 <template>
-  <div>
-    <div class="hero min-h-screen bg-blue-500">
-      <div class="hero-content flex-col lg:flex-row">
-        <div class="text-center lg:text-left min-w-96 text-green-50">
-          <h1 class="text-5xl font-bold">Register now!</h1>
-          <p class="py-6">在这里， 创造属于您的代码故事</p>
-        </div>
-        <div class="card shrink-0 w-full max-w-sm shadow-2xl bg-white">
-          <el-form ref="ruleFormRef" class="card-body" :model="registerDetails" :rules="rules">
-            <el-form-item class="form-control" prop="username">
-              <el-input
-                v-model="registerDetails.username"
-                size="large"
-                type="text"
-                placeholder="username"
-                class="bg-white w-full my-2.5"
-              />
-            </el-form-item>
-            <el-form-item class="form-control" prop="password">
-              <el-input
-                v-model="registerDetails.password"
-                type="password"
-                size="large"
-                placeholder="password"
-                class="bg-white w-full"
-              />
-            </el-form-item>
-            <el-form-item class="form-control mt-6">
-              <el-button class="register-button w-full" @click="RegisterFn(ruleFormRef)">
-                Register
-              </el-button>
-            </el-form-item>
-          </el-form>
-        </div>
-      </div>
-    </div>
+  <div class="form-container">
+    <el-form ref="ruleFormRef" class="card-body" :model="registerDetails" :rules="rules">
+      <el-form-item class="form-control" prop="username">
+        <el-input v-model="registerDetails.username" size="large" type="text" placeholder="username"
+          class="bg-white w-full my-2.5" />
+      </el-form-item>
+      <el-form-item class="form-control" prop="password">
+        <el-input v-model="registerDetails.password" type="password" size="large" placeholder="password"
+          class="bg-white w-full" />
+      </el-form-item>
+      <el-form-item class="form-control mt-6">
+        <el-button class="register-button w-full" @click="RegisterFn(ruleFormRef)">
+          Register
+        </el-button>
+      </el-form-item>
+    </el-form>
   </div>
+
 </template>
 
 <style scoped>

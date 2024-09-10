@@ -1,29 +1,27 @@
 <script lang="ts" setup>
+//导入
 import { useUser } from '@/stores/modules/user'
 import { Bell, ChromeFilled, CoffeeCup } from '@element-plus/icons-vue'
 import router from '@/router'
+
+
 const UserStore = useUser()
 </script>
 <template>
   <div class="user-layout-container">
+
+    <!--------------------------------------提示登录框开始------------------------------------- -->
     <div v-if="UserStore.isLogin !== true" class="alert-container">
       <div role="alert" class="alert alert-error">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="stroke-current shrink-0 h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
         <span>您尚未登录，请登录后查看此页</span>
       </div>
     </div>
+    <!--------------------------------------提示登录框结尾------------------------------------- -->
+
     <div v-else>
       <div class="common-layout">
         <el-container>
@@ -64,12 +62,14 @@ const UserStore = useUser()
 </template>
 <style scoped>
 .user-layout-container {
-  min-height: 100vh;
+  height: 100vh;
 }
+
 .common-layout {
   margin: 0 auto;
   padding: 10px;
 }
+
 .alert-container {
   padding: 10px;
 }

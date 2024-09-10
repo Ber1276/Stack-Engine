@@ -19,6 +19,7 @@ const logoutFn = () => {
   UserStore.isLogin = false
   localStorage.clear()
   router.push('/home')
+  location.reload()
 }
 </script>
 <template>
@@ -91,6 +92,7 @@ const logoutFn = () => {
     width: 200px;
 
     img {
+      width: 200px;
       object-fit: cover;
     }
   }

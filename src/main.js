@@ -3,7 +3,6 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import App from './App.vue'
 import './assets/styles/main.css'
-import './assets/styles/tailwindcss.css'
 import './assets/styles/element/index.css' //样式
 
 import router from './router/index' //路由

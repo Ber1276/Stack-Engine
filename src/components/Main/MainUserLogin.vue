@@ -28,6 +28,8 @@ const rules = reactive({
     { pattern: /^[a-zA-Z0-9_]{6,18}$/, message: '密码只能包含数字字母下划线', trigger: 'blur' }
   ]
 })
+
+
 //登录保存信息关闭弹窗
 const submitForm = (formEl) => {
   formEl.validate((valid) => {
@@ -55,27 +57,63 @@ const LoginFn = async (formEl) => {
     formEl.resetFields()
     closePop()
   } catch (err) {
-    ElMessage({ type: 'error', message: err.data })
+    ElMessage({ type: 'error', message: err.response.data.message })
   }
 }
+
+
 </script>
 <template>
-  <el-form ref="ruleFormRef" :rules="rules" :model="ruleForm" status-icon label-width="auto"
-    class="demo-ruleForm pt-8 px-4" label-position="right" hide-required-asterisk>
+
+  <el-form ref="ruleFormRef" :rules="rules" :model="ruleForm" status-icon label-width="auto" class="demo-ruleForm "
+    label-position="right" hide-required-asterisk>
+
     <el-form-item label="用户名" prop="username">
-      <el-input v-model="ruleForm.username" type="text" autocomplete="off" />
+      <el-input v-model="ruleForm.username" type="text" autocomplete="on" />
     </el-form-item>
     <el-form-item label="密码" prop="password">
       <el-input v-model="ruleForm.password" type="password" autocomplete="off" />
     </el-form-item>
-    <el-form-item>
-      <el-button class="w-4/5 mx-auto" type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
+    <el-form-item class="button-container">
+      <div class="login-container">
+        <el-button type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
+      </div>
+
+      <div class="register-container">
+        <p>没有账号？<el-button @click="router.push('/register')">注册</el-button></p>
+      </div>
     </el-form-item>
+
   </el-form>
-  <div class="flex flex-col text-center">
 
-    <p>没有账号？<el-button @click="router.push('/register')">注册</el-button></p>
 
-  </div>
 </template>
-<style scoped></style>
+<style scoped>
+.demo-ruleForm {
+  padding: 20px 8px 0 8px;
+}
+
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  row-gap: 50px;
+  padding-left: 54px;
+}
+
+.login-container {
+  button {
+    width: 200px;
+  }
+}
+
+.register-container {
+  display: block;
+  margin-left: 60px;
+
+  button {
+    width: 60px;
+  }
+}
+</style>

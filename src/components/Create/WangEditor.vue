@@ -110,7 +110,7 @@ const handleSubmit = async (data, token) => {
 </script>
 
 <template>
-  <div class="editor-demo mx-auto relative">
+  <div class="editor-demo ">
     <!-- 编辑器实例开始 -->
 
     <!-- 菜单栏开始 -->
@@ -123,43 +123,44 @@ const handleSubmit = async (data, token) => {
 
     <!-- 文章信息栏开始 -->
 
-    <div class="w-full mt-4 grid-cols-4 grid-rows-1 grid gap-4">
+    <div class="grid-container">
 
-      <div class="flex gap-2 mb-4 h-7">
-        <span class="text-xl">标题</span>
-        <el-input v-model="editorData.title" style="width: 240px; height: 28px" placeholder="您的标题" />
+      <div class="grid-item">
+        <span class="title">标题</span>
+        <el-input v-model="editorData.title" placeholder="您的标题" />
       </div>
 
-      <div class="flex gap-2 mb-4 h-7">
-        <span class="text-xl">封面</span>
+      <div class="grid-item">
+        <span class="title">封面</span>
         <el-upload v-model:file-list="fileList" class="upload-demo"
           action="http://49.232.134.192:8081/article/upload/file" :headers="token" :before-remove="beforeRemove"
           :limit="1" :on-exceed="handleExceed" :on-success="(response) => {
             return handleSuccess(response)
           }
             ">
-          <el-button type="primary" style="height: 28px; width: 240px">上传封面</el-button>
+          <el-button type="primary">上传封面</el-button>
         </el-upload>
       </div>
 
-      <div class="flex gap-2 mb-4 h-7">
-        <span class="text-xl">类别</span>
-        <el-select v-model="editorData.category" style="width: 240px; height: 28px" placeholder="文章类别">
+      <div class="grid-item">
+        <span class="title">类别</span>
+        <el-select v-model="editorData.category" placeholder="文章类别">
           <el-option v-for="item in categoryOptions" :key="item.label" :label="item.label"
             :value="item.value"></el-option>
         </el-select>
       </div>
 
-      <div class="flex gap-2 mb-4 h-7">
-        <span class="text-xl">摘要</span>
-        <el-input v-model="editorData.summary" style="width: 240px; height: 28px" placeholder="文章摘要" />
+      <div class="grid-item">
+        <span class="title">摘要</span>
+        <el-input v-model="editorData.summary" placeholder="文章摘要" />
       </div>
+      <div class="grid-item">
+        <span> 点击发表</span>
+        <el-button class="submit" @click="handleSubmit(editorData, token.token)">
+          发表文章</el-button>
+      </div>
+    </div>
 
-    </div>
-    <div>
-      <el-button class="float-right" @click="handleSubmit(editorData, token.token)">
-        发表文章</el-button>
-    </div>
 
     <!-- 文章信息栏结束 -->
   </div>
@@ -170,5 +171,25 @@ const handleSubmit = async (data, token) => {
   margin-top: 10px;
   height: 500px;
   width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.grid-container {
+  padding: 10px 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+}
+
+.grid-item {
+  text-align: left;
+  width: 240px;
+  padding: 0 10px;
+
+  button {
+    height: 28px;
+    width: 220px
+  }
 }
 </style>

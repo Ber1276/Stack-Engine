@@ -1,9 +1,12 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-import HomeCarousel from '@/components/Main/HomeCarousel.vue'
-import MainFooter from '@/components/Main/MainFooter.vue'
 import { GetArticleList } from '@/api/public.js'
+import { ElMessage } from 'element-plus';
+//导入组件
+import MainFooter from '@/components/Main/MainFooter.vue'
+import HomeCarousel from '@/components/Main/HomeCarousel.vue'
 
+//渲染列表
 const list = ref([])
 const isLoading = ref(true)
 const props = ref({ list, isLoading })
@@ -11,20 +14,30 @@ const getList = async () => {
   try {
     const res = await GetArticleList(1, 2, localStorage.getItem('token'))
     list.value = res.data.records
-    console.log(res.data.records)
     isLoading.value = false
   } catch (err) {
-    console.log(err)
+    ElMessage({
+      type: 'error',
+      message: err
+    })
   }
 }
+
+//挂载时获取列表
 onMounted(getList)
 </script>
 <template>
   <div class="common-layout">
+
+    <!-- 主体部分-------------------------------------- -->
+
     <el-container class="el-container">
+
+      <!-- ---------------------------------文章瀑布流-------------------------------------- -->
+
       <el-main class="el-main">
         <HomeCarousel></HomeCarousel>
-        <ul v-loading="props.isLoading" class="infinite-list min-h-16" style="overflow: auto">
+        <ul v-loading="props.isLoading" class="infinite-list" style="overflow: auto">
           <el-card>
             <template #header>
               <div class="card-header">
@@ -44,6 +57,11 @@ onMounted(getList)
           </el-card>
         </ul>
       </el-main>
+
+      <!-- ---------------------------------文章瀑布流-------------------------------------- -->
+
+      <!-- ---------------------------------右侧工具栏-------------------------------------- -->
+
       <el-aside class="right-aside">
         <el-card class="right-card">
           <template #header>
@@ -55,7 +73,12 @@ onMounted(getList)
           <template #footer>Footer content</template>
         </el-card>
       </el-aside>
+
+      <!-- ---------------------------------右侧工具栏-------------------------------------- -->
+
     </el-container>
+
+    <!-- 主体部分-------------------------------------- -->
 
     <MainFooter></MainFooter>
   </div>
@@ -88,16 +111,18 @@ onMounted(getList)
 }
 
 .infinite-list {
-  min-height: 500px;
+  min-height: 800px;
   height: max-content;
   padding: 0;
-  margin: 10px 0 0 0;
+  margin: 10px 0 10px 0;
   list-style: none;
   width: 100%;
 }
 
 .infinite-list .infinite-list-item {
   a {
+    display: flex;
+    justify-content: space-around;
     padding: 10px;
     height: 88px;
 
