@@ -45,7 +45,12 @@ onMounted(getList)
               </div>
             </template>
             <li v-for="item in props.list" :key="item.id" class="infinite-list-item">
-              <a class="flex justify-between w-full">
+              <a @click="$router.push({
+                path: '/article',
+                query: {
+                  id: item.id
+                }
+              })">
                 <span class="list-item-reading">{{ item.reading }}读过</span>
                 <div>
                   <p class="list-item-title">{{ item.title }}</p>

@@ -21,8 +21,8 @@ const renderList = async () => {
     token: localStorage.getItem('token')
   }
   const res = await GetArticleList(payload)
-
-  userArticleList.value = res.data.data.records
+  const records = res.data.data.records
+  userArticleList.value = records
 }
 onMounted(renderList)
 
@@ -35,9 +35,7 @@ const deleteArticle = (id) => {
   })
     .then(async () => {
       try {
-        const res = DeleteArticle(id, localStorage.getItem('token'))
-        res
-        renderList()
+        DeleteArticle(id, localStorage.getItem('token'))
         ElMessage({
           type: 'success',
           message: '删除成功!'
@@ -52,6 +50,9 @@ const deleteArticle = (id) => {
         type: 'info',
         message: '已取消删除'
       })
+    })
+    .finally(() => {
+      location.reload()
     })
 }
 </script>
@@ -69,11 +70,13 @@ const deleteArticle = (id) => {
 
     <div class="main">
       <div class="aside">
+        <span class="title">文件列表</span>
         <ul>
-          <span class="title">文件列表</span>
           <li v-for="item in userArticleList" :key="item.id">
             <div>
-              <a style="line-height: 40px">{{ item.title }}</a>
+              <div class="title-container">
+                <a>{{ item.title }}</a>
+              </div>
               <el-icon class="delete" @click="deleteArticle(item.id)">
                 <Delete />
               </el-icon>
@@ -127,24 +130,42 @@ const deleteArticle = (id) => {
   height: 680px;
   overflow: hidden;
 
+
   .title {
     font-size: 20px;
     font-weight: 600;
   }
 
   li {
+
     position: relative;
-    height: 40px;
-    font-size: 20px;
-    line-height: 40px;
+
+    .title-container {
+      width: 160px;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      a {
+        height: 40px;
+        font-size: 18px;
+        line-height: 40px;
+      }
+
+
+    }
+
+    .delete {
+      position: absolute;
+      right: 10px;
+      top: 12px;
+      font-size: 20px;
+      z-index: 100;
+    }
+
   }
 
-  .delete {
-    position: absolute;
-    right: 10px;
-    top: 13px;
-    font-size: 20px;
-  }
 }
 
 .editor {

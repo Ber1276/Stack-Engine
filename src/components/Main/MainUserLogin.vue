@@ -1,7 +1,7 @@
 <script setup>
 //导入
 import router from '@/router'
-import { ref, reactive, defineEmits } from 'vue'
+import { ref, reactive } from 'vue'
 import { GetUserInfo, GetUserDetails } from '@/api/user.js'
 import { useUser } from '@/stores/modules/user.js'
 import { ElMessage } from 'element-plus'
@@ -13,7 +13,6 @@ const closePop = () => {
   emit('close-popup')
   location.reload()
 }
-
 
 //表单校验
 const ruleFormRef = ref()
@@ -28,7 +27,6 @@ const rules = reactive({
     { pattern: /^[a-zA-Z0-9_]{6,18}$/, message: '密码只能包含数字字母下划线', trigger: 'blur' }
   ]
 })
-
 
 //登录保存信息关闭弹窗
 const submitForm = (formEl) => {
@@ -46,7 +44,7 @@ const LoginFn = async (formEl) => {
     //保存用户信息
     const result = await GetUserInfo(ruleForm.value)
     const res = result.data.data
-    console.log(res);
+    console.log(res)
 
     localStorage.setItem('token', res.token)
     ElMessage({ type: 'success', message: '登录成功' })
@@ -62,14 +60,18 @@ const LoginFn = async (formEl) => {
     ElMessage({ type: 'error', message: err.response.data.message })
   }
 }
-
-
 </script>
 <template>
-
-  <el-form ref="ruleFormRef" :rules="rules" :model="ruleForm" status-icon label-width="auto" class="demo-ruleForm "
-    label-position="right" hide-required-asterisk>
-
+  <el-form
+    ref="ruleFormRef"
+    :rules="rules"
+    :model="ruleForm"
+    status-icon
+    label-width="auto"
+    class="demo-ruleForm"
+    label-position="right"
+    hide-required-asterisk
+  >
     <el-form-item label="用户名" prop="username">
       <el-input v-model="ruleForm.username" type="text" autocomplete="on" />
     </el-form-item>
@@ -85,16 +87,12 @@ const LoginFn = async (formEl) => {
         <p>没有账号？<el-button @click="router.push('/register')">注册</el-button></p>
       </div>
     </el-form-item>
-
   </el-form>
-
-
 </template>
 <style scoped>
 .demo-ruleForm {
   padding: 20px 8px 0 8px;
 }
-
 
 .button-container {
   display: flex;

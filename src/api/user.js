@@ -35,15 +35,14 @@ export const PostSubmitArticle = async (data, token) => {
   })
   return res
 }
-export const GetArticleList = async ({ pageNo, pageSize, userId }) => {
-  return await instance.get('/article/page/query', {
+export const GetArticleList = async ({ pageNo, pageSize }) => {
+  return await instance.get('/article/query/publish', {
     headers: {
       token: localStorage.getItem('token')
     },
     params: {
       pageNo: pageNo,
       pageSize: pageSize,
-      userId: userId
     }
   })
 }

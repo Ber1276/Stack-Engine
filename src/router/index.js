@@ -6,6 +6,7 @@ import MainLayout from '@/views/layout/MainLayout.vue'
 import UserLayout from '@/views/user/UserLayout.vue'
 import creationCenter from '@/views/create/creationCenter.vue'
 import registerLayout from '@/views/layout/RegisterLayout.vue'
+import ArticleDetailsPage from '@/views/article/ArticleDetailsPage.vue'
 
 import MainHome from '@/views/layout/MainPages/MainHome.vue'
 import accountSetting from '@/views/user/modules/accountSetting.vue'
@@ -53,7 +54,10 @@ const router = createRouter({
       path: '/create',
       component: creationCenter
     },
-
+    {
+      path: '/article',
+      component: ArticleDetailsPage
+    },
     {
       path: '/register',
       component: registerLayout
