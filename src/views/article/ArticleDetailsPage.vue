@@ -1,3 +1,28 @@
+<script setup>
+import { ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router';
+import FavButton from '@/components/littile/FavButton.vue';
+import { House, Share, Star } from '@element-plus/icons-vue';
+import { getArticleDetils } from '@/api/article';
+
+
+const route = useRoute()
+const router = useRouter()
+const id = route.query.id
+
+
+//获取文章内容
+const getdetils = async () => {
+    let res = await getArticleDetils(id);
+    res = res.data.data
+    total.value = res
+    console.log(res);
+
+}
+const total = ref({})
+getdetils()
+</script>
+
 <template>
     <!-- 顶栏 -->
     <div class="header">
@@ -12,10 +37,14 @@
     <!-- 主体 -->
     <div class="main">
         <div class="detils">
-            作者
+            作者:{{ total.author }}<br>
+            标题：{{ total.title }}<br>
+            差评：{{ total.bad }}<br>
+            收藏：{{ total.collect }}<br>
+            好评：{{ total.good }}<br>
         </div>
         <div class="article">
-            {{ id }}
+            内容：{{ total.content }}
         </div>
     </div>
 
@@ -33,15 +62,7 @@
     </div>
 </template>
 
-<script setup>
-import { House, Share, Star } from '@element-plus/icons-vue';
-import FavButton from '@/components/littile/FavButton.vue';
-import { useRoute, useRouter } from 'vue-router';
-const route = useRoute()
-const router = useRouter()
-const id = route.query.id
-id
-</script>
+
 
 <style lang="scss" scoped>
 .header {
@@ -63,11 +84,12 @@ id
 
 .main {
     width: 100%;
-    height: max-content;
+    height: 100vh;
     position: relative;
-    padding-top: 40px;
+    padding-top: 50px;
     display: flex;
     justify-content: space-between;
+    overflow: hidden;
 }
 
 .detils {
@@ -78,6 +100,7 @@ id
 
 .article {
     height: 100%;
+    overflow-y: scroll;
     width: 80%;
     outline: 1px solid #000;
 }
