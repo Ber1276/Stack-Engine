@@ -89,9 +89,9 @@ const RegisterFn = async (formEl) => {
   background-color: #472FDB;
 
   img {
-    width: 464px;
-    height: 480px;
-    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
   }
 }
 
