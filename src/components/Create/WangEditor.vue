@@ -172,7 +172,7 @@ const handleSubmit = async (data, token) => {
 <style scoped>
 .editor-demo {
   margin-top: 10px;
-  height: 500px;
+  height: 540px;
   width: 1200px;
   margin: 0 auto;
   position: relative;

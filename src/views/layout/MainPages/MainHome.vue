@@ -1,10 +1,24 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { GetArticleList } from '@/api/public.js'
-import { ElMessage } from 'element-plus';
+import { ElMessage } from 'element-plus'
 //导入组件
 import MainFooter from '@/components/Main/MainFooter.vue'
 import HomeCarousel from '@/components/Main/HomeCarousel.vue'
+
+//分页功能
+const paginate = ref({
+  pagenum: 1,
+  pagesize: 10,
+  total: 10
+})
+const handleCurrentChange = () => {
+  getList()
+}
+
+const handleSizeChange = () => {
+  getList()
+}
 
 //渲染列表
 const list = ref([])
@@ -12,8 +26,9 @@ const isLoading = ref(true)
 const props = ref({ list, isLoading })
 const getList = async () => {
   try {
-    const res = await GetArticleList(1, 2, localStorage.getItem('token'))
+    const res = await GetArticleList(paginate.value.pagenum, paginate.value.pagesize, localStorage.getItem('token'))
     list.value = res.data.records
+    paginate.value.total = res.data.records.length
     isLoading.value = false
   } catch (err) {
     ElMessage({
@@ -28,11 +43,9 @@ onMounted(getList)
 </script>
 <template>
   <div class="common-layout">
-
     <!-- 主体部分-------------------------------------- -->
 
     <el-container class="el-container">
-
       <!-- ---------------------------------文章瀑布流-------------------------------------- -->
 
       <el-main class="el-main">
@@ -45,12 +58,14 @@ onMounted(getList)
               </div>
             </template>
             <li v-for="item in props.list" :key="item.id" class="infinite-list-item">
-              <a @click="$router.push({
-                path: '/article',
-                query: {
-                  id: item.id
-                }
-              })">
+              <a @click="
+                $router.push({
+                  path: '/article',
+                  query: {
+                    id: item.id
+                  }
+                })
+                ">
                 <span class="list-item-reading">{{ item.reading }}读过</span>
                 <div>
                   <p class="list-item-title">{{ item.title }}</p>
@@ -61,6 +76,10 @@ onMounted(getList)
             </li>
           </el-card>
         </ul>
+
+        <el-pagination style="margin-bottom: 10px;" layout="prev,pager,next" :total="paginate.total"
+          v-model:current-page="paginate.pagenum" v-model:page-size="paginate.pagesize" @size-change="handleSizeChange"
+          @current-change="handleCurrentChange" />
       </el-main>
 
       <!-- ---------------------------------文章瀑布流-------------------------------------- -->
@@ -80,7 +99,6 @@ onMounted(getList)
       </el-aside>
 
       <!-- ---------------------------------右侧工具栏-------------------------------------- -->
-
     </el-container>
 
     <!-- 主体部分-------------------------------------- -->
@@ -94,6 +112,7 @@ onMounted(getList)
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  height: max-content;
 
   .el-container {
     padding: 10px 10px 0 10px;
@@ -116,7 +135,6 @@ onMounted(getList)
 }
 
 .infinite-list {
-  min-height: 800px;
   height: max-content;
   padding: 0;
   margin: 10px 0 10px 0;

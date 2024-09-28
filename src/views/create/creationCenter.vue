@@ -96,6 +96,10 @@ const deleteArticle = (id) => {
 <style scoped>
 .container {
   position: relative;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .header {
@@ -119,15 +123,15 @@ const deleteArticle = (id) => {
 
 .main {
   display: flex;
-  justify-content: space-between;
-  padding-right: 50px;
+  justify-content: space-around;
+  height: calc(100vh - 70px);
 }
 
 .aside {
   background-color: #fff;
   width: 220px;
   padding: 10px;
-  height: 680px;
+  height: 100%;
   overflow: hidden;
 
 
@@ -170,6 +174,6 @@ const deleteArticle = (id) => {
 
 .editor {
   width: 1200px;
-  height: max-content;
+  height: 100%;
 }
 </style>
