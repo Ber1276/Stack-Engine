@@ -26,6 +26,15 @@ const handleClosePop = () => {
   loginPopupVisible.value = false
   imgSrc.value = UserStore.userImg
 }
+const handleSearch = () => {
+  router.push({
+    path: '/search',
+    query: {
+      keyword: input.value
+    }
+  })
+
+}
 </script>
 <template>
   <!-- -----------------------------导航栏开始---------------------------- -->
@@ -42,7 +51,7 @@ const handleClosePop = () => {
 
     <el-menu-item class="search" index="1">
 
-      <el-input v-model="input" placeholder="搜你所想" clearable />
+      <el-input @keyup.enter="handleSearch" v-model="input" placeholder="搜你所想" clearable />
 
     </el-menu-item>
 

@@ -12,9 +12,9 @@ import MainHome from '@/views/layout/MainPages/MainHome.vue'
 import accountSetting from '@/views/user/modules/accountSetting.vue'
 import notificationMessage from '@/views/user/modules/notificationMessage.vue'
 import personalData from '@/views/user/modules/personalData.vue'
+import MainSearch from '@/views/layout/MainPages/MainSearch.vue'
 
 const router = createRouter({
-
   history: createWebHistory(import.meta.env.BASE_URL),
 
   routes: [
@@ -61,6 +61,10 @@ const router = createRouter({
     {
       path: '/register',
       component: registerLayout
+    },
+    {
+      path: '/search',
+      component: MainSearch
     }
   ]
 })

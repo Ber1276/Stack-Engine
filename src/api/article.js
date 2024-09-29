@@ -11,3 +11,13 @@ export const getArticleDetils = async (id) => {
     }
   })
 }
+export const getSearchResults = async (keyword) => {
+  return await instance.get('/article/search', {
+    headers: {
+      token: localStorage.getItem('token')
+    },
+    params: {
+      keyword: keyword
+    }
+  })
+}
