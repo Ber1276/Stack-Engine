@@ -2,21 +2,8 @@
 import MainHeader from '@/components/Main/MainHeader.vue';
 import { useRoute } from 'vue-router';
 import { ref } from 'vue'
+import { getSearchResults } from '@/api/article';
 const route = useRoute()
-
-
-
-//实现搜索结果获取
-const keyword = ref(route.query.keyword)
-keyword
-const situation = ref({
-    isLoading: true,
-    list: [],
-})
-const getArticles = () => {
-
-}
-
 
 //分页管理
 const paginate = ref({
@@ -24,6 +11,30 @@ const paginate = ref({
     pagenum: 1,
     pagesize: 10,
 })
+//实现搜索结果获取
+const keyword = ref(route.query.keyword)
+const situation = ref({
+    isLoading: true,
+    list: [],
+})
+
+
+
+
+const getArticles = () => {
+    situation.value.isLoading = true
+    try {
+        getSearchResults(paginate.value.pagenum, paginate.value.pagesize, keyword.value).then(res => {
+            console.log(res);
+            situation.value.list = res.data.records
+            paginate.value.total = res.data.total
+            situation.value.isLoading = false
+        })
+    } catch (err) {
+        situation.value.isLoading = true
+        console.error(err)
+    }
+}
 const handleCurrentChange = () => {
     getArticles()
 }
@@ -32,6 +43,12 @@ const handleSizeChange = () => {
     paginate.value.pagenum = 1
     getArticles()
 }
+getArticles()
+
+
+
+
+
 </script>
 <template>
     <MainHeader></MainHeader>
@@ -68,5 +85,50 @@ const handleSizeChange = () => {
     padding-top: var(--el-menu-horizontal-height);
     padding-left: 100px;
     padding-right: 100px;
+}
+
+.list {
+    height: max-content;
+    padding: 0;
+    margin: 10px 0 10px 0;
+    list-style: none;
+    width: 100%;
+}
+
+.list .list-item {
+    a {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        height: 88px;
+
+        .list-item-reading {
+            line-height: 68px;
+            width: 80px;
+        }
+
+        .list-item-author {
+            line-height: 68px;
+            width: 200px;
+        }
+
+        div {
+            width: 600px;
+            position: relative;
+
+            .list-item-title {
+                font-size: 36px;
+                position: absolute;
+                top: 0;
+                margin-top: -10px;
+            }
+
+            .list-item-summary {
+                font-size: 12px;
+                position: absolute;
+                bottom: 0;
+            }
+        }
+    }
 }
 </style>

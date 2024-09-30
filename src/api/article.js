@@ -11,13 +11,16 @@ export const getArticleDetils = async (id) => {
     }
   })
 }
-export const getSearchResults = async (keyword) => {
-  return await instance.get('/article/search', {
+export const getSearchResults = async (pageNo, pageSize, keyword) => {
+  const { data } = await instance.get('/article/page/query', {
     headers: {
       token: localStorage.getItem('token')
     },
     params: {
-      keyword: keyword
+      pageNo,
+      pageSize,
+      title: keyword
     }
   })
+  return data
 }
