@@ -21,11 +21,23 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, defineProps } from 'vue'
+import { getGood, getCancelGood } from '@/api/article';
 const isUp = ref(false)
+const props = defineProps({
+    id: String
+})
+
 const handleClick = () => {
+    if (!isUp.value) {
+        getGood(props.id)
+    }
+    else {
+        getCancelGood(props.id)
+    }
     isUp.value = !isUp.value
 }
+
 </script>
 <style scoped>
 .circle {

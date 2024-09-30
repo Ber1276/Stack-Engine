@@ -9,15 +9,14 @@ import MainHeader from '@/components/Main/MainHeader.vue'
 const route = useRoute()
 const router = useRouter()
 router
-const id = route.query.id
+const id = ref(route.query.id)
 
 //获取文章内容
 const getdetils = async () => {
-  let res = await getArticleDetils(id)
+  let res = await getArticleDetils(id.value)
   res = res.data.data
   total.value = res
-  console.log(res)
-  document.querySelector('.article').innerHTML=res.content
+  document.querySelector('.article').innerHTML = res.content
 }
 const total = ref({})
 getdetils()
@@ -48,7 +47,7 @@ getdetils()
         <!-- 控件 -->
         <div class="controls">
           <el-icon class="fav">
-            <FavButton></FavButton>
+            <FavButton :id="id"></FavButton>
           </el-icon>
           <el-icon>
             <Star />
@@ -69,7 +68,7 @@ getdetils()
       <!-- 控件 -->
       <div class="controls">
         <el-icon class="fav">
-          <FavButton></FavButton>
+          <FavButton :id="id"></FavButton>
         </el-icon>
         <el-icon>
           <Star />
@@ -98,16 +97,19 @@ getdetils()
   height: 120px;
   background-color: #fff;
   padding: 10px 20px;
+
   .board {
     display: flex;
     height: 100%;
     justify-content: space-between;
     align-items: center;
   }
+
   .board-left {
     .title {
       font-size: 32px;
     }
+
     .banner {
       display: flex;
       align-items: center;
@@ -123,12 +125,14 @@ getdetils()
     gap: 10px;
     flex-direction: row;
     font-size: 24px;
+
     .fav {
       margin-left: -1px;
       margin-top: -1px;
     }
   }
 }
+
 .article {
   padding: 0 20px;
   padding-top: 20px;
@@ -138,6 +142,7 @@ getdetils()
   border-top: 1px solid var(--el-color-primary);
   border-bottom: 1px solid var(--el-color-primary);
 }
+
 .comment {
   display: flex;
   height: 60px;
@@ -147,7 +152,8 @@ getdetils()
   justify-content: space-between;
   font-size: 22px;
   align-items: center;
-  .controls{
+
+  .controls {
     font-size: 28px;
     display: flex;
     gap: 10px;

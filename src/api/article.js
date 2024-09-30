@@ -24,3 +24,29 @@ export const getSearchResults = async (pageNo, pageSize, keyword) => {
   })
   return data
 }
+
+export const getGood = (articleId) => {
+  return instance({
+    method: 'PATCH',
+    url: '/article/add/good',
+    headers: {
+      token: localStorage.getItem('token')
+    },
+    params: {
+      articleId
+    }
+  })
+}
+
+export const getCancelGood = (articleId) => {
+  return instance({
+    method: 'PATCH',
+    url: '/article/cancel/good',
+    headers: {
+      token: localStorage.getItem('token')
+    },
+    params: {
+      articleId
+    }
+  })
+}
