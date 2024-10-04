@@ -74,6 +74,14 @@ router.beforeEach(async (to) => {
     ElMessage({ type: 'warning', message: '请先登录' })
     return false
   }
+  if (to.path === '/article' && !localStorage.getItem('token')) {
+    ElMessage({ type: 'warning', message: '请先登录' })
+    return false
+  }
+  if (to.path === '/search' && !localStorage.getItem('token')) {
+    ElMessage({ type: 'warning', message: '请先登录' })
+    return false
+  }
 })
 
 export default router

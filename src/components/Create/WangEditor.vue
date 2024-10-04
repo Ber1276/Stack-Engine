@@ -172,8 +172,8 @@ const handleSubmit = async (data, token) => {
 <style scoped>
 .editor-demo {
   margin-top: 10px;
-  height: 540px;
-  width: 1200px;
+  height: 70vh;
+  width: 80vw;
   margin: 0 auto;
   position: relative;
 }
@@ -187,12 +187,12 @@ const handleSubmit = async (data, token) => {
 
 .grid-item {
   text-align: left;
-  width: 240px;
+  width: 15vw;
   padding: 0 10px;
 
   button {
     height: 28px;
-    width: 220px
+    width: 15vw
   }
 }
 </style>

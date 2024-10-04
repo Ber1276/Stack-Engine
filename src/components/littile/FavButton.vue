@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps } from 'vue'
+import { ref } from 'vue'
 import { getGood, getCancelGood } from '@/api/article';
 const isUp = ref(false)
 const props = defineProps({

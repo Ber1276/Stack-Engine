@@ -121,11 +121,11 @@ onMounted(getList)
 
     .el-main {
       padding: 0 10px 0 0;
-      max-width: 1000px;
+      flex: 3;
     }
 
     .right-aside {
-      width: 300px;
+      flex: 1;
 
       .right-card {
         width: 100%;
@@ -148,6 +148,7 @@ onMounted(getList)
     justify-content: space-around;
     padding: 10px;
     height: 88px;
+    cursor: pointer;
 
     .list-item-reading {
       line-height: 68px;

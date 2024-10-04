@@ -47,7 +47,7 @@ const handleSearch = () => {
 
     </el-menu-item>
 
-    <div class="flex-grow" />
+    <div class="flex-grow-1" />
 
     <el-menu-item class="search" index="1">
 
@@ -55,7 +55,7 @@ const handleSearch = () => {
 
     </el-menu-item>
 
-    <div class="flex-grow" />
+    <div class="flex-grow-1" />
 
     <el-menu-item class="creationCenter" index="2">
       <el-button @click="router.push('/create')"> 创作中心 </el-button>
@@ -65,7 +65,8 @@ const handleSearch = () => {
       登录
     </el-menu-item>
 
-    <el-menu-item index="4">
+    <div class="flex-grow-2" />
+    <el-menu-item index="4" v-if="UserStore.isLogin === true">
 
       <el-dropdown trigger="click">
 
@@ -111,8 +112,12 @@ const handleSearch = () => {
     }
   }
 
-  .flex-grow {
-    flex: 0.2;
+  .flex-grow-1 {
+    flex: 0.5;
+  }
+
+  .flex-grow-2 {
+    flex: 0.1;
   }
 
   --el-menu-bg-color: var(--main-color-bg);
@@ -142,8 +147,16 @@ const handleSearch = () => {
   }
 
   .el-dropdown-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 1vw;
+    border: 1px solid var(--el-color-primary);
+
     img {
-      width: 120px;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
       object-fit: cover;
     }
   }

@@ -129,7 +129,7 @@ const deleteArticle = (id) => {
 
 .aside {
   background-color: #fff;
-  width: 220px;
+  width: 16vw;
   padding: 10px;
   height: 100%;
   overflow: hidden;
@@ -173,7 +173,7 @@ const deleteArticle = (id) => {
 }
 
 .editor {
-  width: 1200px;
+  width: 82vw;
   height: 100%;
 }
 </style>
