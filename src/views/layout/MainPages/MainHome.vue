@@ -38,6 +38,7 @@ const getList = async () => {
   }
 }
 
+
 //挂载时获取列表
 onMounted(getList)
 </script>
