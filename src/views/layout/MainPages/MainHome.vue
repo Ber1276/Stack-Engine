@@ -27,8 +27,9 @@ const props = ref({ list, isLoading })
 const getList = async () => {
   try {
     const res = await GetArticleList(paginate.value.pagenum, paginate.value.pagesize, localStorage.getItem('token'))
+    console.log(res.data.records);
     list.value = res.data.records
-    paginate.value.total = res.data.records.length
+    paginate.value.total = res.data.total
     isLoading.value = false
   } catch (err) {
     ElMessage({
