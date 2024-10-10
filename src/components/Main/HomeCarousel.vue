@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 const imglist = ref([
-  { id: '1', source: '/src/assets/img/img01.webp' },
-  { id: '2', source: '/src/assets/img/img02.webp' },
-  { id: '3', source: '/src/assets/img/img03.webp' },
-  { id: '4', source: '/src/assets/img/img04.webp' }
+  { id: '1', source: '/img/img01.webp' },
+  { id: '2', source: '/img/img02.webp' },
+  { id: '3', source: '/img/img03.webp' },
+  { id: '4', source: '/img/img04.webp' }
 ])
 
 
@@ -15,7 +15,6 @@ const imglist = ref([
 
 <template>
   <el-carousel :interval="5000" arrow="always">
-    <img src="../../assets/img/img01.webp" alt="">
     <el-carousel-item v-for="item in imglist" :key="item.id">
       <img :src="item.source" alt="randomimg">
     </el-carousel-item>
