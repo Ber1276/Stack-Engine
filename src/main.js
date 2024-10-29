@@ -3,7 +3,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import App from './App.vue'
 import './assets/styles/main.css'
-import './assets/styles/element/index.css' //样式
+//样式
 
 import router from './router/index' //路由
 import pinia from './stores/index' //状态

@@ -10,8 +10,5 @@ body {
     -apple-system;
 }
 body {
-  background-color: #f2f3f5 !important;
-}
-.ant-modal div[aria-hidden='true'] {
-  display: none !important;
+  background-color: #f3f4f6;
 }

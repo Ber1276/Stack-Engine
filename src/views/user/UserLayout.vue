@@ -67,7 +67,6 @@ const UserStore = useUser()
 
 .common-layout {
   margin: 0 auto;
-  padding: 10px;
 }
 
 .alert-container {

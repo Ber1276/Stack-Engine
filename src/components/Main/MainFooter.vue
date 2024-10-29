@@ -19,7 +19,7 @@ const product = ref([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }])
     <div class="bottom-container">
       <div class="copyright-container">
         <p>Copyright</p>
-        <p>浙xxxxx号-2浙公网安备xxxxxx号ICP 经营许可 浙xxxxxxxxx</p>
+        <p>鲁xxxxx号-2浙公网安备xxxxxx号ICP 经营许可 鲁xxxxxxxxx</p>
         <p>xxxx有限公司版权所有</p>
       </div>
       <div class="logo-container">
@@ -54,6 +54,7 @@ const product = ref([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }])
     }
 
     .product-name {
+      cursor: pointer;
       color: rgb(108, 117, 125);
       font-family: system-ui, -apple-system;
     }

@@ -9,7 +9,7 @@ import HomeCarousel from '@/components/Main/HomeCarousel.vue'
 //分页功能
 const paginate = ref({
   pagenum: 1,
-  pagesize: 10,
+  pagesize: 15,
   total: 10
 })
 const handleCurrentChange = () => {
@@ -47,18 +47,17 @@ onMounted(getList)
   <div class="common-layout">
     <!-- 主体部分-------------------------------------- -->
 
-    <el-container class="el-container">
+    <div class="el-container">
       <!-- ---------------------------------文章瀑布流-------------------------------------- -->
 
       <el-main class="el-main">
         <HomeCarousel></HomeCarousel>
+
         <ul v-loading="props.isLoading" class="infinite-list" style="overflow: auto">
+          <div class="card-header">
+            推荐
+          </div>
           <el-card>
-            <template #header>
-              <div class="card-header">
-                <el-button>推荐</el-button>
-              </div>
-            </template>
             <li v-for="item in props.list" :key="item.id" class="infinite-list-item">
               <a @click="
                 $router.push({
@@ -101,7 +100,7 @@ onMounted(getList)
       </el-aside>
 
       <!-- ---------------------------------右侧工具栏-------------------------------------- -->
-    </el-container>
+    </div>
 
     <!-- 主体部分-------------------------------------- -->
 
@@ -112,21 +111,30 @@ onMounted(getList)
 <style scoped>
 .common-layout {
   margin: 0;
-  padding: 0;
+  padding: 2vw 0 0 2vw;
   box-sizing: border-box;
   height: max-content;
+  overflow: hidden;
 
   .el-container {
-    padding: 10px 10px 0 10px;
     margin: 0 auto;
-    width: 100%;
+    gap: 1vw;
 
     .el-main {
-      padding: 0 10px 0 0;
       flex: 3;
+      padding: 0;
+      margin: 0;
+
+      .card-header {
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 1vw;
+      }
     }
 
     .right-aside {
+      margin: 0;
+      padding: 0;
       flex: 1;
 
       .right-card {
@@ -139,7 +147,7 @@ onMounted(getList)
 .infinite-list {
   height: max-content;
   padding: 0;
-  margin: 10px 0 10px 0;
+  margin: 2vw 0 10px 0;
   list-style: none;
   width: 100%;
 }

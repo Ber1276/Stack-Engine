@@ -1,6 +1,5 @@
 <script setup>
 //导入
-import router from '@/router'
 import { ref, reactive } from 'vue'
 import { GetUserInfo, GetUserDetails } from '@/api/user.js'
 import { useUser } from '@/stores/modules/user.js'
@@ -60,18 +59,14 @@ const LoginFn = async (formEl) => {
     ElMessage({ type: 'error', message: err.response.data.message })
   }
 }
+
+const handleOpenRegister = () => {
+  window.open('/register', '_blank')
+}
 </script>
 <template>
-  <el-form
-    ref="ruleFormRef"
-    :rules="rules"
-    :model="ruleForm"
-    status-icon
-    label-width="auto"
-    class="demo-ruleForm"
-    label-position="right"
-    hide-required-asterisk
-  >
+  <el-form ref="ruleFormRef" :rules="rules" :model="ruleForm" status-icon label-width="auto" class="demo-ruleForm"
+    label-position="left" hide-required-asterisk>
     <el-form-item label="用户名" prop="username">
       <el-input v-model="ruleForm.username" type="text" autocomplete="on" />
     </el-form-item>
@@ -84,7 +79,7 @@ const LoginFn = async (formEl) => {
       </div>
 
       <div class="register-container">
-        <p>没有账号？<el-button @click="router.push('/register')">注册</el-button></p>
+        <el-button @click="handleOpenRegister">注册</el-button>
       </div>
     </el-form-item>
   </el-form>
@@ -95,25 +90,27 @@ const LoginFn = async (formEl) => {
 }
 
 .button-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  row-gap: 50px;
-  padding-left: 54px;
+
+  button {
+    --el-button-bg-color: black;
+    --el-button-text-color: white;
+    --el-button-hover-bg-color: black;
+    --el-button-hover-text-color: white;
+  }
 }
 
 .login-container {
+
   button {
     width: 200px;
   }
 }
 
 .register-container {
-  display: block;
-  margin-left: 60px;
+  margin-left: 52px;
 
   button {
-    width: 60px;
+    width: 200px;
   }
 }
 </style>

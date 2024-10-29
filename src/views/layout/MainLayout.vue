@@ -4,10 +4,17 @@ import MainHeader from '@/components/Main/MainHeader.vue'
 import MainAside from '@/components/Main/MainAside.vue'
 </script>
 <template>
-  <div class="main-home-container">
+  <div>
     <MainHeader></MainHeader>
-    <MainAside></MainAside>
-    <RouterView class="main-router-view"></RouterView>
+    <div class="main-home-container">
+      <div class="main-aside">
+        <MainAside></MainAside>
+      </div>
+      <div>
+        <RouterView class="main-router-view"></RouterView>
+      </div>
+    </div>
+
   </div>
 
 </template>
@@ -15,13 +22,14 @@ import MainAside from '@/components/Main/MainAside.vue'
 <style scoped>
 .main-home-container {
   position: relative;
+  display: flex;
+}
+
+.main-aside {
+  width: 16vw;
 }
 
 .main-router-view {
-  position: absolute;
-  left: var(--main-aside-width);
-  top: var(--el-menu-horizontal-height);
-  width: calc(100% - var(--main-aside-width));
-  overflow: hidden;
+  width: 82vw;
 }
 </style>
