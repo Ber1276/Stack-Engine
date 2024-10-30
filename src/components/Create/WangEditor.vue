@@ -1,9 +1,16 @@
 <script setup>
-import { onBeforeUnmount, shallowRef, onMounted, ref } from 'vue'
+import { onBeforeUnmount, shallowRef, ref, onMounted, watch } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import '@wangeditor/editor/dist/css/style.css'
 import { PostSubmitArticle } from '@/api/user.js'
+import { useArticle } from '@/stores'
+import { putUpdateArticle } from '@/api/article.js'
+
+
+const articleState = useArticle()
+
+
 
 //传出emit
 const emit = defineEmits(['submitSuccess'])
@@ -32,13 +39,12 @@ const editorData = ref({
   category: '',
   visibleRange: 0
 })
-// 模拟 ajax 异步获取内容
+
 onMounted(() => {
   setTimeout(() => {
-    editorData.value.content = '<p>模拟 Ajax 异步设置内容</p>'
-  }, 1500)
+    editorData.value.content = articleState.articleContent
+  }, 0)
 })
-
 
 //封面上传
 const token = { token: localStorage.getItem('token') }
@@ -96,7 +102,6 @@ const categoryOptions = [
 const handleSubmit = async (data, token) => {
   try {
     const res = await PostSubmitArticle(data, token)
-    console.log(res.message)
     emit('submitSuccess')
     ElMessage({
       type: 'success',
@@ -108,7 +113,39 @@ const handleSubmit = async (data, token) => {
   }
 
 }
+const handleUpdate = async (data) => {
 
+
+  for (let key in data) {
+
+    if (key == 'cover' && data[key] == null) {
+      continue
+    }
+    if (data[key] === undefined || data[key] === null || data[key] === '') {
+      ElMessage({
+        type: 'warning',
+        message: '请输入文章必需详情'
+      })
+      return
+    }
+  }
+  try {
+    const res = await putUpdateArticle(data)
+    emit('submitSuccess')
+    ElMessage({
+      type: 'success',
+      message: res.message
+    })
+  }
+  catch (err) {
+    console.log(err);
+  }
+}
+
+watch(articleState, () => {
+  editorData.value.content = articleState.articleContent
+  articleState.updateArticleVisible = true
+})
 
 </script>
 
@@ -157,11 +194,26 @@ const handleSubmit = async (data, token) => {
         <span class="title">摘要</span>
         <el-input v-model="editorData.summary" placeholder="文章摘要" />
       </div>
-      <div class="grid-item">
+      <div v-if="articleState.updateArticleVisible == true" class="grid-item">
+        <span> 点击发布新版本</span>
+        <el-button class="submit" @click="handleUpdate({
+          id: articleState.currentArticleId,
+          title: editorData.title,
+          cover: editorData.cover,
+          content: editorData.content,
+          summary: editorData.summary,
+          category: editorData.category,
+          visibleRange: 0
+        }
+        )">
+          更新文章</el-button>
+      </div>
+      <div v-else class="grid-item">
         <span> 点击发表</span>
         <el-button class="submit" @click="handleSubmit(editorData, token.token)">
           发表文章</el-button>
       </div>
+
     </div>
 
 

@@ -58,7 +58,9 @@ getdetils()
         </div>
       </div>
     </div>
-    <div class="article"></div>
+    <div class="article-container">
+      <div class="article"></div>
+    </div>
     <div class="comment">
       <div class="comment-left">
         <div class="author">
@@ -133,8 +135,13 @@ getdetils()
   }
 }
 
-.article {
+.article-container {
   padding: 0 20px;
+  background-color: #fff;
+}
+
+.article {
+  padding: 20px 20px;
   padding-top: 20px;
   min-height: 800px;
   background-color: #fff;

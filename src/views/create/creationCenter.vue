@@ -4,13 +4,16 @@ import { onMounted, ref } from 'vue'
 import { Delete, House } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { GetArticleList } from '@/api/user.js'
+import { getArticleDetils } from '@/api/article'
 import { DeleteArticle } from '@/api/user.js'
 import router from '@/router'
-import { useUser } from '@/stores'
+import { useUser, useArticle } from '@/stores'
 
 //数据
 const userState = useUser()
+const articleState = useArticle()
 const userArticleList = ref([])
+const selectedArticleList = ref()
 
 //渲染侧边文章列表
 const renderList = async () => {
@@ -23,6 +26,14 @@ const renderList = async () => {
   const res = await GetArticleList(payload)
   const records = res.data.data.records
   userArticleList.value = records
+}
+//渲染选中文章
+const renderArticle = async () => {
+  const payload = selectedArticleList.value
+  const res = await getArticleDetils(payload)
+  const records = res.data.data
+  console.log(records);
+  articleState.articleContent = records.content
 }
 onMounted(renderList)
 
@@ -72,8 +83,13 @@ const deleteArticle = (id) => {
       <div class="aside">
         <span class="title">文件列表</span>
         <ul>
-          <li v-for="item in userArticleList" :key="item.id">
-            <div>
+          <li v-for="item in userArticleList" :key="item.id"
+            :class="{ active: (articleState.currentArticleId == item.id) }">
+            <div @click="() => {
+              articleState.currentArticleId = item.id
+              selectedArticleList = item.id
+              renderArticle()
+            }">
               <div class="title-container">
                 <a>{{ item.title }}</a>
               </div>
@@ -140,8 +156,13 @@ const deleteArticle = (id) => {
     font-weight: 600;
   }
 
-  li {
+  .active {
+    background-color: #f0f0f0;
+    color: #409EFF;
+  }
 
+  li {
+    padding: 0 5px;
     position: relative;
 
     .title-container {

@@ -50,3 +50,13 @@ export const getCancelGood = (articleId) => {
     }
   })
 }
+export const putUpdateArticle = (data) => {
+  return instance({
+    method: 'PUT',
+    url: '/article/update',
+    headers: {
+      token: localStorage.getItem('token')
+    },
+    data
+  })
+}
